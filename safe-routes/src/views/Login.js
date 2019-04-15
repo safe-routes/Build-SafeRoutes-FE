@@ -5,7 +5,7 @@ const Login = props => {
 
   return (
     <>
-      <h1>Hello from Login</h1>
+      <p>Hello from Login</p>
       <LoginForm />
     </>
   )

@@ -1,1 +1,1 @@
-export { Container } from './S_Global'
+export { Container, Form, FormInput, FormBtn,  color_pallete } from './S_Global'
