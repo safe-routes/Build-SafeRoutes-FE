@@ -68,6 +68,8 @@ const LoginForm = props => {
           :
           null
         }
+
+        <p>{props.message}</p>
         <FormBtn
           width='60%'
           height='60px'
@@ -85,7 +87,8 @@ const LoginForm = props => {
 
 const mapStateToProps = ({ addUserReducer }) => {
   return ({
-    isAdding: addUserReducer.isAdding
+    isAdding: addUserReducer.isAdding,
+    message: addUserReducer.message
   })
 }
 export default withRouter (
