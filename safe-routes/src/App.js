@@ -6,11 +6,13 @@ import { Container } from './styles'
 
 //Component imports
 import Login from './views/Login'
+import { Route } from 'react-router-dom'
+
 class App extends Component {
   render() {
     return (
       <Container>
-        <Login />
+        <Route path='/login' component={ Login } />
       </Container>
     );
   }
