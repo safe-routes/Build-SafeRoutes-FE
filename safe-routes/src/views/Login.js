@@ -4,10 +4,9 @@ import LoginForm from '../components/LoginForm'
 const Login = props => {
 
   return (
-    <>
-      <p>Hello from Login</p>
+    <div className='login-container'>
       <LoginForm />
-    </>
+    </div>
   )
 }
 

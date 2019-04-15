@@ -11,19 +11,36 @@ export const color_pallete = {
 export const Container = styled.div `
   height: 100vh;
   font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .login-container {
+    width: 100%;
+  }
 `
 export const Form = styled.form `
   background: ${props => props.background};
-  color: ${props => props.color};
+  color: white;
   height: ${props => props.height};
   width: ${props => props.width};
-  margin: 0 auto;
+  margin: auto;
   padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   border-radius: 7px;
+  font-size: 2rem;
+
+  h1 {
+    font-size: 3rem;
+    margin: 5px;
+  }
+
+  label {
+    display: inline-block;
+  }
 `
 export const FormInput = styled.input `
   border: none;
@@ -31,6 +48,7 @@ export const FormInput = styled.input `
   margin: 5px;
   height: 25px;
   width: ${props => props.width ? props.width : '50%'};
+  height: ${props => props.height ? props.height : '30px'}
   background: none;
   text-align: center;
   ::placeholder {
@@ -39,7 +57,7 @@ export const FormInput = styled.input `
 `
 export const FormBtn = styled.button `
   width: ${props => props.width ? props.width : '50%'};
-  height: 30px;
+  height: ${props => props.height};
   background: ${color_pallete.accent_3};
   border: none;
   border-radius: 5px;
