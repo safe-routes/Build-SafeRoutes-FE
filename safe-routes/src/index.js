@@ -15,4 +15,10 @@ const store = createStore(
   )
 )
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider> , document.getElementById('root')
+);
