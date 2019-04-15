@@ -31,20 +31,18 @@ export const Form = styled.form `
   align-items: center;
   justify-content: space-around;
   border-radius: 7px;
-  font-size: 2rem;
+  font-size: 2.3rem;
 
   h1 {
     font-size: 3rem;
-    margin: 5px;
-  }
-
-  label {
-    display: inline-block;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: 500;
   }
 `
 export const FormInput = styled.input `
   border: none;
-  border-bottom: 2px solid ${color_pallete.accent_3};
+  border-bottom: 1.5px solid ${color_pallete.accent_3};
   margin: 5px;
   height: 25px;
   width: ${props => props.width ? props.width : '50%'};
@@ -63,4 +61,5 @@ export const FormBtn = styled.button `
   border-radius: 5px;
   color: white;
   margin: 10px;
+  cursor: pointer;
 `
