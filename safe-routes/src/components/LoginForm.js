@@ -30,8 +30,6 @@ const LoginForm = props => {
         onSubmit={useLogin}
       >
         <h1>{hasAccount ? 'Login' : 'Sign Up'}</h1>
-
-        {hasAccount ?  null : <AddAccountItems handleEmail={handleEmail} handleName={handleName}/>}
         <FormInput
           placeholder='Enter Username'
           name='username'
@@ -45,6 +43,10 @@ const LoginForm = props => {
           type='password'
           onChange={e => setPassword(e.target.value)}
         />
+
+
+        {hasAccount ?  null : <AddAccountItems handleEmail={handleEmail} handleName={handleName}/>}
+        
         <FormBtn
           width='60%'
           height='60px'
