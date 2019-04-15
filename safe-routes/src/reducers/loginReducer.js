@@ -17,6 +17,7 @@ export const loginReducer = (state = initialState, action) =>  {
         isLoggingIn: true
       }
     case LOGIN_SUCCESS:
+      console.log(action.payload)
       return {
         ...state,
         isLoggingIn: false,
@@ -28,5 +29,6 @@ export const loginReducer = (state = initialState, action) =>  {
         isLoggingIn: false,
         message: 'Please check your credentials and try again'
       }
+    default: return state
   }
 }

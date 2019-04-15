@@ -11,7 +11,6 @@ import { addUser, login } from '../actions'
 const LoginForm = props => {
 
   const [hasAccount, setHasAccount] = useState(true)
-
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
@@ -69,7 +68,7 @@ const LoginForm = props => {
           null
         }
 
-        <p>{props.message}</p>
+        {hasAccount ? <p>{props.loginMessage}</p> : <p>{props.message}</p>}
         <FormBtn
           width='60%'
           height='60px'
@@ -88,10 +87,12 @@ const LoginForm = props => {
   )
 }
 
-const mapStateToProps = ({ addUserReducer }) => {
+const mapStateToProps = ({ addUserReducer, loginReducer }) => {
   return ({
     isAdding: addUserReducer.isAdding,
-    message: addUserReducer.message
+    isLoggingIn: loginReducer.isLoggingIn,
+    message: addUserReducer.message,
+    loginMessage: loginReducer.message
   })
 }
 export default withRouter (
