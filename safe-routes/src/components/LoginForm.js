@@ -31,6 +31,7 @@ const LoginForm = props => {
     password: password
   }
 
+
   return (
     <div className='login-form-container'>
       <Form
@@ -55,22 +56,22 @@ const LoginForm = props => {
           onChange={e => setPassword(e.target.value)}
         />
 
+        {hasAccount ?  null : <AddAccountItems handleEmail={handleEmail} handleName={handleName}/>}
+
         {props.isAdding ?
           <Loader
             type="ThreeDots"
-            color="red"
+            color={color_pallete.accent_3}
             height="50"
             width="50"
           />
           :
           null
         }
-        {hasAccount ?  null : <AddAccountItems handleEmail={handleEmail} handleName={handleName}/>}
-
         <FormBtn
           width='60%'
           height='60px'
-          onClick={() => hasAccount ? () : props.addUser(newUser) }
+          onClick={() => hasAccount ? null : props.addUser(newUser) }
         >
           {hasAccount ? ('Login') : 'Sign Up'}
         </FormBtn>
