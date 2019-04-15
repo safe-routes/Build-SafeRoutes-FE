@@ -10,9 +10,9 @@ export const addUser = info => dispatch => {
   return axios
     .post('https://saferoutes-4-12.herokuapp.com/api/auth/register', info)
     .then (res => {
-      console.log(res)
+      dispatch({ type: ADD_USER_SUCCESS })
     })
     .catch(err => {
-      console.log(err)
+      dispatch({ type: ADD_USER_FAIL })
     })
 }
