@@ -16,8 +16,20 @@ const LoginForm = props => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
-  const useLogin = e => {
+  const useSubmit = e => {
     e.preventDefault();
+
+    hasAccount ? props.login({
+      username: username,
+      password: password
+    })
+    :
+    props.addUser(newUser)
+
+    setName('')
+    setEmail('')
+    setPassword('')
+    setUsername('')
   }
 
   const handleEmail = e =>  setEmail(e.target.value)
@@ -38,7 +50,7 @@ const LoginForm = props => {
         min-height='200px'
         width='50%'
         height='400px'
-        onSubmit={useLogin}
+        onSubmit={useSubmit}
       >
         <h1>{hasAccount ? 'Login' : 'Sign Up'}</h1>
         <FormInput
@@ -57,7 +69,7 @@ const LoginForm = props => {
 
         {hasAccount ?  null : <AddAccountItems handleEmail={handleEmail} handleName={handleName}/>}
 
-        {props.isAdding ?
+        {props.isAdding || props.isLoggingIn ?
           <Loader
             type="ThreeDots"
             color={color_pallete.accent_3}
@@ -72,10 +84,6 @@ const LoginForm = props => {
         <FormBtn
           width='60%'
           height='60px'
-          onClick={() => hasAccount ? props.login({
-            username: username,
-            password: password
-          }) : props.addUser(newUser) }
         >
           {hasAccount ? ('Login') : 'Sign Up'}
         </FormBtn>
