@@ -7,7 +7,7 @@ import AddAccountItems from './AddAccount'
 import { connect } from 'react-redux'
 import Loader from 'react-loader-spinner'
 import { withRouter } from 'react-router-dom'
-import { addUser } from '../actions'
+import { addUser, login } from '../actions'
 const LoginForm = props => {
 
   const [hasAccount, setHasAccount] = useState(true)
@@ -73,7 +73,10 @@ const LoginForm = props => {
         <FormBtn
           width='60%'
           height='60px'
-          onClick={() => hasAccount ? null : props.addUser(newUser) }
+          onClick={() => hasAccount ? props.login({
+            username: username,
+            password: password
+          }) : props.addUser(newUser) }
         >
           {hasAccount ? ('Login') : 'Sign Up'}
         </FormBtn>
@@ -93,6 +96,6 @@ const mapStateToProps = ({ addUserReducer }) => {
 }
 export default withRouter (
   connect (
-    mapStateToProps, { addUser }
+    mapStateToProps, { addUser, login }
   )(LoginForm)
 )
