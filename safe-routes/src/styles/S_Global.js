@@ -19,10 +19,30 @@ export const Form = styled.form `
   width: ${props => props.width};
   margin: 0 auto;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 7px;
 `
 export const FormInput = styled.input `
-
+  border: none;
+  border-bottom: 2px solid ${color_pallete.accent_3};
+  margin: 5px;
+  height: 25px;
+  width: ${props => props.width ? props.width : '50%'};
+  background: none;
+  text-align: center;
+  ::placeholder {
+    color: white;
+  }
 `
 export const FormBtn = styled.button `
-
+  width: ${props => props.width ? props.width : '50%'};
+  height: 30px;
+  background: ${color_pallete.accent_3};
+  border: none;
+  border-radius: 5px;
+  color: white;
+  margin: 10px;
 `
