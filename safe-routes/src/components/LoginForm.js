@@ -3,6 +3,11 @@ import React, { useState, useEffect } from 'react'
 import { Form, FormInput, FormBtn, color_pallete } from '../styles'
 
 import AddAccountItems from './AddAccount'
+
+import { connect } from 'react-redux'
+import Loader from 'react-loader-spinner'
+import { withRouter } from 'react-router-dom'
+import { addUser } from '../actions'
 const LoginForm = props => {
 
   const [hasAccount, setHasAccount] = useState(true)
@@ -19,6 +24,12 @@ const LoginForm = props => {
   const handleEmail = e =>  setEmail(e.target.value)
   const handleName = e =>  setName(e.target.value)
 
+  const newUser = {
+    email: email,
+    name: name,
+    username: username,
+    password: password
+  }
 
   return (
     <div className='login-form-container'>
@@ -44,14 +55,25 @@ const LoginForm = props => {
           onChange={e => setPassword(e.target.value)}
         />
 
-
+        {props.isAdding ?
+          <Loader
+            type="ThreeDots"
+            color="red"
+            height="50"
+            width="50"
+          />
+          :
+          null
+        }
         {hasAccount ?  null : <AddAccountItems handleEmail={handleEmail} handleName={handleName}/>}
-        
+
         <FormBtn
           width='60%'
           height='60px'
+          onClick={() => hasAccount ? () : props.addUser(newUser) }
         >
-        {hasAccount ? 'Login' : 'Sign Up'}</FormBtn>
+          {hasAccount ? ('Login') : 'Sign Up'}
+        </FormBtn>
         <a onClick={() => setHasAccount(!hasAccount)}>
           {hasAccount ? 'No account? Create one here.' : 'Already have an account? Log in here'}
         </a>
@@ -60,4 +82,13 @@ const LoginForm = props => {
   )
 }
 
-export default LoginForm
+const mapStateToProps = ({ addUserReducer }) => {
+  return ({
+    isAdding: addUserReducer.isAdding
+  })
+}
+export default withRouter (
+  connect (
+    mapStateToProps, { addUser }
+  )(LoginForm)
+)
