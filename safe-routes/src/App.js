@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <Container>
-        <Route path='/login' component={ Login } />
+        <Login />
         <Link to='/login'>Login</Link>
       </Container>
     );
