@@ -14,7 +14,20 @@ export const addUserReducer = (state = initialState, action) => {
     case ADD_USER_START:
       return {
         ...state,
-        isAdding: true
+        isAdding: true,
+        message: ''
+      }
+    case ADD_USER_SUCCESS:
+      return {
+        ...state,
+        isAdding: false,
+        message: ''
+      }
+    case ADD_USER_FAIL:
+      return {
+        ...state,
+        isAdding: false,
+        message: 'Please fill all fields and try again.'
       }
     default: return state
   }
