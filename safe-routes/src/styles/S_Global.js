@@ -39,6 +39,12 @@ export const Form = styled.form `
     color: white;
     font-weight: 500;
   }
+
+  a {
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 1.6rem;
+  }
 `
 export const FormInput = styled.input `
   border: none;

@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from 'react'
 
 import { Form, FormInput, FormBtn, color_pallete } from '../styles'
+
+import AddAccountItems from './AddAccount'
 const LoginForm = props => {
 
-  const [name, setName] = useState('')
+  const [hasAccount, setHasAccount] = useState(true)
+
   const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+
+  const useLogin = e => {
+    e.preventDefault();
+  }
+
+  const handleEmail = e =>  setEmail(e.target.value)
+  const handleName = e =>  setName(e.target.value)
+
 
   return (
     <div className='login-form-container'>
@@ -15,31 +27,20 @@ const LoginForm = props => {
         min-height='200px'
         width='50%'
         height='400px'
+        onSubmit={useLogin}
       >
-        <h1>Login</h1>
+        <h1>{hasAccount ? 'Login' : 'Sign Up'}</h1>
 
-        <label htmlFor='name'>Name</label>
+        {hasAccount ?  null : <AddAccountItems handleEmail={handleEmail} handleName={handleName}/>}
         <FormInput
-          placeholder='John Doe'
-          name='name'
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-        <label htmlFor='username'>Username</label>
-        <FormInput
-          placeholder='johndoe00'
+          placeholder='Enter Username'
           name='username'
           onChange={e => setUsername(e.target.value)}
         />
-        <label htmlFor='email'>Email</label>
+
+
         <FormInput
-          placeholder='johndoe@gmail.com'
-          name='email'
-          onChange={e => setEmail(e.target.value)}
-        />
-        <label htmlFor='password'>Password</label>
-        <FormInput
-          placeholder='Password'
+          placeholder='Enter Password'
           name='password'
           type='password'
           onChange={e => setPassword(e.target.value)}
@@ -48,7 +49,10 @@ const LoginForm = props => {
           width='60%'
           height='60px'
         >
-        Login</FormBtn>
+        {hasAccount ? 'Login' : 'Sign Up'}</FormBtn>
+        <a onClick={() => setHasAccount(!hasAccount)}>
+          {hasAccount ? 'No account? Create one here.' : 'Already have an account? Log in here'}
+        </a>
       </Form>
     </div>
   )
