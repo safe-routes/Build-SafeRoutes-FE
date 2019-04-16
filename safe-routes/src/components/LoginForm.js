@@ -26,10 +26,6 @@ const LoginForm = props => {
     :
     props.addUser(newUser)
 
-    setName('')
-    setEmail('')
-    setPassword('')
-    setUsername('')
   }
 
   const handleEmail = e =>  setEmail(e.target.value)

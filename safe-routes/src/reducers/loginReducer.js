@@ -6,7 +6,9 @@ import {
 
 const initialState = {
   isLoggingIn: false,
-  message: ''
+  message: '',
+  token: null,
+  id: null
 }
 
 export const loginReducer = (state = initialState, action) =>  {
@@ -17,11 +19,12 @@ export const loginReducer = (state = initialState, action) =>  {
         isLoggingIn: true
       }
     case LOGIN_SUCCESS:
-      console.log(action.payload)
       return {
         ...state,
         isLoggingIn: false,
-        message: ''
+        message: action.payload.message,
+        token: action.payload.token,
+        id: action.payload.token
       }
     case LOGIN_FAIL:
       return {

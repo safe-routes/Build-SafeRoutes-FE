@@ -10,7 +10,7 @@ export const login = creds => dispatch => {
   return axios
     .post('https://saferoutes-4-12.herokuapp.com/api/auth/login', creds)
     .then(res => {
-      dispatch({ type: LOGIN_SUCCESS, payload: res })
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data })
     })
     .catch(err => {
       dispatch({ type: LOGIN_FAIL, payload: err})
