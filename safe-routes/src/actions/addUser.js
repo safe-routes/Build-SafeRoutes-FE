@@ -11,6 +11,7 @@ export const addUser = info => dispatch => {
     .post('https://saferoutes-4-12.herokuapp.com/api/auth/register', info)
     .then (res => {
       dispatch({ type: ADD_USER_SUCCESS, payload: res })
+      
     })
     .catch(err => {
       dispatch({ type: ADD_USER_FAIL })
