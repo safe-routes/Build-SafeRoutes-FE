@@ -11,6 +11,7 @@ export const login = creds => dispatch => {
     .post('https://saferoutes-4-12.herokuapp.com/api/auth/login', creds)
     .then(res => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data })
+      localStorage.setItem('token', res.data.token)
     })
     .catch(err => {
       dispatch({ type: LOGIN_FAIL, payload: err})

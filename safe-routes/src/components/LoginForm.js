@@ -22,9 +22,9 @@ const LoginForm = props => {
     hasAccount ? props.login({
       username: username,
       password: password
-    })
+    }).then(() => props.history.push('/account'))
     :
-    props.addUser(newUser)
+    props.addUser(newUser).then(() => props.history.push('/account'))
 
   }
 
