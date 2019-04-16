@@ -10,9 +10,9 @@ export const deleteUser = id => dispatch => {
   return axios
     .delete(`https://saferoutes-4-12.herokuapp.com/api/user/${id}`)
     .then(res => {
-      console.log(res);
+      dispatch({ type: DELETE_USER_SUCCESS });
     })
-    .then(err => {
-      console.log(err);
+    .catch(err => {
+      dispatch({ type: DELETE_USER_FAIL });
     });
 };
