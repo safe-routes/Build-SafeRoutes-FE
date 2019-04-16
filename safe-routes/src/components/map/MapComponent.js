@@ -6,7 +6,8 @@ import {
   GoogleMap,
   Marker
 } from 'react-google-maps';
-
+import { markerData } from './data/index';
+import { useMarker } from './UseHooks/index';
 const MapComponent = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${
@@ -30,15 +31,27 @@ const MapComponent = compose(
   withScriptjs,
   withGoogleMap
 )(props => {
+  const {
+    //functions
+    setMarkers,
+    setInitialMarkers,
+    //state
+    markers
+  } = useMarker();
+  useEffect(() => {
+    setInitialMarkers(markerData);
+  }, []);
   return (
     <GoogleMap
-      defaultZoom={6}
+      defaultZoom={4}
       onClick={e => {
         console.log(e.latLng.lat(), e.latLng.lng());
       }}
       defaultCenter={{ lat: 36.93, lng: -119.953 }}
     >
-      {/* {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} onClick={props.onMarkerClick} />} */}
+      {markers.map(mark => {
+        return <Marker key={mark.id} position={mark.position} />;
+      })}
     </GoogleMap>
   );
 });
