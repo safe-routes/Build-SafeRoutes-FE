@@ -9,8 +9,6 @@ import { Typography, Row, Col, Input, Button, Popconfirm, message } from "antd";
 const { Title } = Typography;
 
 const Profile = props => {
-  const [deleteForm, triggerDeleteForm] = useState(false);
-  const [password, setPassword] = useState("");
   const greetMessage = localStorage.getItem("greeting");
   const id = localStorage.getItem("id");
   const username = localStorage.getItem("username");

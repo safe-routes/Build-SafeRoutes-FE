@@ -13,3 +13,10 @@ export {
   DELETE_USER_FAIL,
   deleteUser
 } from "./deleteUser";
+
+export {
+  CHANGE_USER_START,
+  CHANGE_USER_SUCCESS,
+  CHANGE_USER_FAIL,
+  updateUser
+} from "./updateUser";

@@ -16,7 +16,6 @@ export const deleteUser = id => dispatch => {
       localStorage.removeItem("username");
     })
     .catch(err => {
-      console.log("FAIL");
       dispatch({ type: DELETE_USER_FAIL });
     });
 };
