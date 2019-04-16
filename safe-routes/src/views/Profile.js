@@ -13,6 +13,7 @@ const Profile = props => {
       <Row>
         <Col xs={{ span: 20 }}>
           <Input placeholder="Update Username" />
+
           <Button block type="danger">
             Delete Account
           </Button>
