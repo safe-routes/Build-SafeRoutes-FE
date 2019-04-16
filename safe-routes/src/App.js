@@ -8,7 +8,7 @@ import { Container } from './styles'
 import Login from './views/Login'
 import AccountLanding from './views/AccountLanding'
 import { Route } from 'react-router-dom'
-import { Profile } from './views/Profile'
+import  Profile  from './views/Profile'
 
 class App extends Component {
   render() {
