@@ -5,7 +5,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAIL = 'LOGIN_FAIL'
 
 export const login = creds => dispatch => {
-  dispatch({ type: LOGIN_START, payload: creds})
+  dispatch({ type: LOGIN_START})
 
   return axios
     .post('https://saferoutes-4-12.herokuapp.com/api/auth/login', creds)
