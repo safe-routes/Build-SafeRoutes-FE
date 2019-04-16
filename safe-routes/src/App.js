@@ -15,7 +15,11 @@ class App extends Component {
   render() {
     return (
       <Container>
-        <Route exact path="/" component={Login} />
+        <Route
+          exact
+          path="/"
+          component={localStorage.getItem('token') ? AccountLanding : Login}
+        />
         <Route path="/account-landing" component={AccountLanding} />
         <Route path="/account" component={Profile} />
         <Route path="/map" component={MapComponent} />
