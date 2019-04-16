@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { compose, withProps } from 'recompose';
 import {
   withScriptjs,
@@ -10,7 +10,9 @@ import {
 const MapComponent = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${
-      process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+      process.env.REACT_APP_IS_DEV === 'true'
+        ? ''
+        : process.env.REACT_APP_GOOGLE_MAPS_API_KEY
     }&v=3.exp&libraries=geometry,drawing,places`,
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: (
@@ -29,7 +31,13 @@ const MapComponent = compose(
   withGoogleMap
 )(props => {
   return (
-    <GoogleMap defaultZoom={8} defaultCenter={{ lat: -34.397, lng: 150.644 }}>
+    <GoogleMap
+      defaultZoom={6}
+      onClick={e => {
+        console.log(e.latLng.lat(), e.latLng.lng());
+      }}
+      defaultCenter={{ lat: 36.93, lng: -119.953 }}
+    >
       {/* {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} onClick={props.onMarkerClick} />} */}
     </GoogleMap>
   );
