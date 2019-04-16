@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import Authenticate from "../auth/Authenticate";
 import { deleteUser } from "../actions";
@@ -9,12 +9,21 @@ import { Typography, Row, Col, Input, Button, Popconfirm, message } from "antd";
 const { Title } = Typography;
 
 const Profile = props => {
+  const [deleteForm, triggerDeleteForm] = useState(false);
+  const [password, setPassword] = useState("");
   const greetMessage = localStorage.getItem("greeting");
   const id = localStorage.getItem("id");
-
-  const useDelete = id => {
+  const username = localStorage.getItem('username')
+  const useDelete = () => {
+    const user = {
+      username,
+      password
+    };
     props
-      .deleteUser(id)
+      .deleteUser({
+        "username": "lappjeff",
+        "password": "asdfasdf"
+      })
       .then(message.success("User Removed"))
       .then(props.history.push("/"));
   };
@@ -29,26 +38,37 @@ const Profile = props => {
       <Row>
         <Col xs={{ span: 100 }}>
           <Input placeholder="Update Username" />
+          <Button block>Update User</Button>
         </Col>
 
-        <Popconfirm
-          title="Are you sure you want to delete this account? All data will be removed"
-          onConfirm={() => useDelete(id)}
-          onCancel={cancel}
+        <Button
+          onClick={
+            deleteForm ? () => useDelete() : () => triggerDeleteForm(true)
+          }
+          block
+          type="danger"
         >
-          <Button block type="danger">
-            {props.isDeleting ? (
-              <Loader
-                type="ThreeDots"
-                color={color_pallete.accent_3}
-                height="50"
-                width="50"
-              />
-            ) : (
-              "Delete User"
-            )}
-          </Button>
-        </Popconfirm>
+          {props.isDeleting ? (
+            <Loader
+              type="ThreeDots"
+              color={color_pallete.accent_3}
+              height="30"
+              width="30"
+            />
+          ) : (
+            "Delete User"
+          )}
+        </Button>
+        {deleteForm ? (
+          <>
+            <Input
+              placeholder="Enter Password To Remove Account"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              type="password"
+            />
+          </>
+        ) : null}
       </Row>
     </div>
   );
@@ -65,3 +85,10 @@ export default Authenticate(
     )(Profile)
   )
 );
+
+// <Popconfirm
+//   title="Are you sure you want to delete this account? All data will be removed"
+//   onConfirm={() => useDelete(id)}
+//   onCancel={cancel}
+// >
+// </Popconfirm>

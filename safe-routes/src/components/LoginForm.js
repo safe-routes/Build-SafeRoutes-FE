@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { Form, FormInput, FormBtn, color_pallete } from "../styles";
 
@@ -17,7 +17,7 @@ const LoginForm = props => {
 
   const useSubmit = e => {
     e.preventDefault();
-
+    localStorage.setItem("username", username);
     hasAccount
       ? props
           .login({

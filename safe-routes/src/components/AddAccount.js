@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from "react";
 
-import { FormInput } from '../styles';
+import { FormInput } from "../styles";
 const AddAccount = ({ handleEmail, handleName }) => {
   return (
     <>
