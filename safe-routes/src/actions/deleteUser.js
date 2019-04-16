@@ -11,6 +11,9 @@ export const deleteUser = id => dispatch => {
     .delete(`https://saferoutes-4-12.herokuapp.com/api/user/${id}`)
     .then(res => {
       dispatch({ type: DELETE_USER_SUCCESS });
+      localStorage.removeItem("token");
+      localStorage.removeItem("greeting");
+      localStorage.removeItem("id");
     })
     .catch(err => {
       dispatch({ type: DELETE_USER_FAIL });
