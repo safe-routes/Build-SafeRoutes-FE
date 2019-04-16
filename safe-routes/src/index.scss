@@ -6,3 +6,26 @@
 	font-family: 'Montserrat', sans-serif;
 	line-height: 1;
 }
+
+.account-landing {
+	display: flex;
+	flex-direction: column;
+
+	div {
+		display: flex;
+		justify-content: space-around;
+		margin: 20px;
+
+	}
+	h1 {
+		font-size: 4rem;
+		font-weight: 400;
+		color: gray;
+	}
+
+	a {
+		text-decoration: none;
+		font-size: 2rem;
+		color: black;
+	}
+}

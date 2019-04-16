@@ -83,7 +83,7 @@ const LoginForm = props => {
         >
           {hasAccount ? ('Login') : 'Sign Up'}
         </FormBtn>
-        <a onClick={() => setHasAccount(!hasAccount)}>
+        <a href='#' onClick={() => setHasAccount(!hasAccount)}>
           {hasAccount ? 'No account? Create one here.' : 'Already have an account? Log in here'}
         </a>
       </Form>
@@ -96,7 +96,8 @@ const mapStateToProps = ({ addUserReducer, loginReducer }) => {
     isAdding: addUserReducer.isAdding,
     isLoggingIn: loginReducer.isLoggingIn,
     message: addUserReducer.message,
-    loginMessage: loginReducer.message
+    loginMessage: loginReducer.message,
+    hasAccount: addUserReducer.hasAccount
   })
 }
 export default withRouter (
