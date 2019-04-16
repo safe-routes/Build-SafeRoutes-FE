@@ -2,7 +2,8 @@ import { ADD_USER_START, ADD_USER_SUCCESS, ADD_USER_FAIL } from '../actions';
 
 const initialState = {
   isAdding: false,
-  message: ''
+  message: '',
+  hasAccount: false
 };
 
 export const addUserReducer = (state = initialState, action) => {
@@ -17,7 +18,8 @@ export const addUserReducer = (state = initialState, action) => {
       return {
         ...state,
         isAdding: false,
-        message: ''
+        message: '',
+        hasAccount: true
       };
     case ADD_USER_FAIL:
       return {

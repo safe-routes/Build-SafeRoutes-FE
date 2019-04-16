@@ -31,10 +31,9 @@ export const Form = styled.form`
   align-items: center;
   justify-content: space-around;
   border-radius: 7px;
-  font-size: 2.3rem;
+  font-size: 1rem;
 
   h1 {
-    font-size: 3rem;
     margin-bottom: 10px;
     color: white;
     font-weight: 500;
@@ -43,7 +42,7 @@ export const Form = styled.form`
   a {
     cursor: pointer;
     text-decoration: underline;
-    font-size: 1.6rem;
+    color: white;
   }
 `;
 export const FormInput = styled.input`
