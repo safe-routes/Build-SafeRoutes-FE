@@ -13,17 +13,11 @@ const Profile = props => {
   const [password, setPassword] = useState("");
   const greetMessage = localStorage.getItem("greeting");
   const id = localStorage.getItem("id");
-  const username = localStorage.getItem('username')
+  const username = localStorage.getItem("username");
+
   const useDelete = () => {
-    const user = {
-      username,
-      password
-    };
     props
-      .deleteUser({
-        "username": "lappjeff",
-        "password": "asdfasdf"
-      })
+      .deleteUser(id)
       .then(message.success("User Removed"))
       .then(props.history.push("/"));
   };
@@ -40,35 +34,15 @@ const Profile = props => {
           <Input placeholder="Update Username" />
           <Button block>Update User</Button>
         </Col>
-
-        <Button
-          onClick={
-            deleteForm ? () => useDelete() : () => triggerDeleteForm(true)
-          }
-          block
-          type="danger"
+        <Popconfirm
+          title="Are you sure you want to delete this account? All data will be removed"
+          onConfirm={() => useDelete(id)}
+          onCancel={cancel}
         >
-          {props.isDeleting ? (
-            <Loader
-              type="ThreeDots"
-              color={color_pallete.accent_3}
-              height="30"
-              width="30"
-            />
-          ) : (
-            "Delete User"
-          )}
-        </Button>
-        {deleteForm ? (
-          <>
-            <Input
-              placeholder="Enter Password To Remove Account"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              type="password"
-            />
-          </>
-        ) : null}
+          <Button block type="danger">
+            Delete User
+          </Button>
+        </Popconfirm>
       </Row>
     </div>
   );
@@ -85,10 +59,3 @@ export default Authenticate(
     )(Profile)
   )
 );
-
-// <Popconfirm
-//   title="Are you sure you want to delete this account? All data will be removed"
-//   onConfirm={() => useDelete(id)}
-//   onCancel={cancel}
-// >
-// </Popconfirm>

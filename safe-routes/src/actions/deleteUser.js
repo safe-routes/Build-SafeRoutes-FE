@@ -4,11 +4,10 @@ export const DELETE_USER_START = "DELETE_USER_START";
 export const DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS";
 export const DELETE_USER_FAIL = "DELETE_USER_FAIL";
 
-export const deleteUser = user => dispatch => {
+export const deleteUser = id => dispatch => {
   dispatch({ type: DELETE_USER_START });
-  console.log(user);
   return axios
-    .delete(`https://saferoutes-4-12.herokuapp.com/api/auth/unregister`, user)
+    .delete(`https://saferoutes-4-12.herokuapp.com/api/auth/unregister/${id}`)
     .then(res => {
       dispatch({ type: DELETE_USER_SUCCESS });
       localStorage.removeItem("token");
@@ -17,6 +16,7 @@ export const deleteUser = user => dispatch => {
       localStorage.removeItem("username");
     })
     .catch(err => {
+      console.log("FAIL");
       dispatch({ type: DELETE_USER_FAIL });
     });
 };
