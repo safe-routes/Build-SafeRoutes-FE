@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-const SearchAddressInput = () => {
-  return <Input type="text" placeholder="Enter an address" />;
+const SearchAddressInput = props => {
+  return <Input type="text" placeholder="Enter an address" {...props} />;
 };
 
 const Input = styled.input`
