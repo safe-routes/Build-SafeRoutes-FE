@@ -10,8 +10,8 @@ import {
 import { markerData } from './data/index';
 import { useMarker } from './UseHooks/index';
 import { SearchBox } from 'react-google-maps/lib/components/places/SearchBox';
-import SearchAddressInput from './PlacesSearchBox/SearchAddressInput';
-
+import { SearchAddressInput } from './PlacesSearchBox/index';
+import { notification } from 'antd';
 const MapComponent = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${
@@ -46,13 +46,27 @@ const MapComponent = compose(
   const mapRef = useRef(null);
   const [bounds, setBounds] = useState(null);
   const [center, setCenter] = useState({ lat: 36.93, lng: -119.953 });
-  const onBoundsChanged = () => {
-    setBounds(mapRef.getBounds());
+
+  const onPlacesChanged = () => {
+    const places = searchBoxRef.current.getPlaces();
+    if (places.length === 0) {
+      notification.error({
+        message: 'No places could be found with that search input'
+      });
+    } else if (places.length === 1) {
+      const { lat, lng } = places[0].geometry.location;
+      setCenter({ lat: lat(), lng: lng() });
+    } else {
+    }
   };
 
   useEffect(() => {
     setInitialMarkers(markerData);
   }, []);
+  useEffect(() => {
+    mapRef.current.panTo(center);
+  }, [center]);
+
   return (
     <GoogleMap
       ref={ref => (mapRef.current = ref)}
@@ -60,12 +74,13 @@ const MapComponent = compose(
       onClick={e => {
         console.log(e.latLng.lat(), e.latLng.lng());
       }}
-      defaultCenter={{ lat: 36.93, lng: -119.953 }}
+      defaultCenter={center}
     >
       <SearchBox
         ref={ref => (searchBoxRef.current = ref)}
         bounds={bounds}
         controlPosition={google.maps.ControlPosition.TOP_CENTER}
+        onPlacesChanged={onPlacesChanged}
       >
         <SearchAddressInput />
       </SearchBox>
