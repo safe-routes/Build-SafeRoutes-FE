@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 
-import Authenticate from '../auth/Authenticate'
+import Authenticate from '../auth/Authenticate';
+import axios from 'axios';
+import { connect } from 'react-redux';
 
 const AccountLanding = props => {
-  return (
-    <div>Hello from AccountLanding</div>
-  )
-}
+  const [message, setMessage] = useState(localStorage.getItem('greeting'));
+  return <div>{message}</div>;
+};
 
-export default Authenticate(AccountLanding) 
+export default Authenticate(AccountLanding);

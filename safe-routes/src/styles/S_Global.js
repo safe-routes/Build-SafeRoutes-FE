@@ -1,14 +1,14 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const color_pallete = {
   primary: '#6b8a8f',
   secondary: '#c3b690',
   accent_1: '#fccb8d',
   accent_2: '#fec872',
-  accent_3: '#e9993d',
-}
+  accent_3: '#e9993d'
+};
 
-export const Container = styled.div `
+export const Container = styled.div`
   height: 100vh;
   font-size: 1.5rem;
   display: flex;
@@ -18,8 +18,8 @@ export const Container = styled.div `
   .login-container {
     width: 100%;
   }
-`
-export const Form = styled.form `
+`;
+export const Form = styled.form`
   background: ${props => props.background};
   color: white;
   height: ${props => props.height};
@@ -45,22 +45,22 @@ export const Form = styled.form `
     text-decoration: underline;
     font-size: 1.6rem;
   }
-`
-export const FormInput = styled.input `
+`;
+export const FormInput = styled.input`
   border: none;
   border-bottom: 1.5px solid ${color_pallete.accent_3};
   margin: 5px;
   height: 25px;
-  width: ${props => props.width ? props.width : '50%'};
-  height: ${props => props.height ? props.height : '30px'}
+  width: ${props => (props.width ? props.width : '50%')};
+  height: ${props => (props.height ? props.height : '30px')}
   background: none;
   text-align: center;
   ::placeholder {
     color: white;
   }
-`
-export const FormBtn = styled.button `
-  width: ${props => props.width ? props.width : '50%'};
+`;
+export const FormBtn = styled.button`
+  width: ${props => (props.width ? props.width : '50%')};
   height: ${props => props.height};
   background: ${color_pallete.accent_3};
   border: none;
@@ -68,4 +68,4 @@ export const FormBtn = styled.button `
   color: white;
   margin: 10px;
   cursor: pointer;
-`
+`;
