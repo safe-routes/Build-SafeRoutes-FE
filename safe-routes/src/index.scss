@@ -1,20 +1,17 @@
 * {
-	font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .account-landing {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-	div {
-		display: flex;
-		justify-content: space-around;
-		margin: 20px;
-	}
-	h1 {
-
-		color: gray;
-	}
-
-
+  div {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+  }
+  h1 {
+    color: gray;
+  }
 }

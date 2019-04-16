@@ -1,11 +1,11 @@
-import React from "react";
-import { connect } from "react-redux";
-import Authenticate from "../auth/Authenticate";
-import { Typography, Row, Col, Input } from "antd";
+import React from 'react';
+import { connect } from 'react-redux';
+import Authenticate from '../auth/Authenticate';
+import { Typography, Row, Col, Input } from 'antd';
 
 const { Title } = Typography;
 const Profile = props => {
-  const message = localStorage.getItem("greeting");
+  const message = localStorage.getItem('greeting');
 
   return (
     <div>
