@@ -69,7 +69,6 @@ const MapComponent = compose(
 
   useEffect(() => {
     setInitialMarkers(markerData);
-    setPlacesData(mockPlacesData);
   }, []);
   useEffect(() => {
     mapRef.current.panTo(center);

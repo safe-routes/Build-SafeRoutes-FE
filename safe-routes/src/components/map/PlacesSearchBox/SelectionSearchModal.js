@@ -10,6 +10,9 @@ const SelectionSearchModal = ({
   return (
     <Modal
       visible={isVisible}
+      onCancel={() => {
+        setIsVisible(false);
+      }}
       title="Search Selection List"
       footer={[
         <Button type="danger" onClick={() => setIsVisible(false)} key="exit">
@@ -25,6 +28,7 @@ const SelectionSearchModal = ({
           console.log(e.target);
           const { lat, lng } = e.target.dataset;
           //   setIsVisible(false);
+          console.log(lat, lng);
           setCenter({ lat: Number(lat), lng: Number(lng) });
         }}
         renderItem={place => {
@@ -34,8 +38,8 @@ const SelectionSearchModal = ({
             <PlaceListItem
               key={id}
               style={{ background: 'lightblue' }}
-              data-lat={lat}
-              data-lng={lng}
+              data-lat={lat()}
+              data-lng={lng()}
             >
               {formatted_address}
             </PlaceListItem>
