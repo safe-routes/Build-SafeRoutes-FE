@@ -1,25 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import Authenticate from "../auth/Authenticate";
-import { deleteUser, updateUser } from "../actions";
-import { withRouter } from "react-router-dom";
-import { Typography, Row, Col, Input, Button, Popconfirm, message } from "antd";
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import Authenticate from '../auth/Authenticate';
+import { deleteUser, updateUser } from '../actions';
+import { withRouter } from 'react-router-dom';
+import { Typography, Row, Col, Input, Button, Popconfirm, message } from 'antd';
 const { Title } = Typography;
 
 const Profile = props => {
-  const [newUsername, setNewUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [newUsername, setNewUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [updatingUser, setUpdatingUser] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  const greetMessage = localStorage.getItem("greeting");
-  const id = localStorage.getItem("id");
-  const username = localStorage.getItem("username");
+  const greetMessage = localStorage.getItem('greeting');
+  const id = localStorage.getItem('id');
+  const username = localStorage.getItem('username');
 
   const useDelete = () => {
-    props
-      .deleteUser({ username, password }, id)
-      .then(message.success("User Removed"))
-      .then(props.history.push("/"));
+    axios
+      .post('auth/login', { username, password })
+      .then(res => props.deleteUser(id).then(props.history.push('/')))
+      .catch(message.error('Please check your password and try again'));
   };
 
   const useUpdate = () => {
@@ -33,20 +34,20 @@ const Profile = props => {
         .updateUser(id, newUser)
         .then(
           () => (
-            localStorage.setItem("username", newUsername),
-            localStorage.setItem("greeting", `Welcome, ${newUsername}`)
+            localStorage.setItem('username', newUsername),
+            localStorage.setItem('greeting', `Welcome, ${newUsername}`)
           )
         )
-        .then(() => message.success("Username updated."));
-      setNewUsername("");
-      setPassword("");
+        .then(() => message.success('Username updated.'));
+      setNewUsername('');
+      setPassword('');
     } else {
-      message.error("Please fill in both fields");
+      message.error('Please fill in both fields');
     }
   };
 
   const cancel = () => {
-    message.error("Canceled");
+    message.error('Canceled');
   };
 
   return (
@@ -67,7 +68,7 @@ const Profile = props => {
               type="password"
             />
           ) : (
-            ""
+            ''
           )}
           <Button
             onClick={() => (updatingUser ? useUpdate() : setUpdatingUser(true))}
@@ -91,7 +92,7 @@ const Profile = props => {
             type="password"
           />
         ) : (
-          ""
+          ''
         )}
       </Row>
     </div>
