@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
+/* eslint-disable no-undef */
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { compose, withProps } from 'recompose';
 import {
   withScriptjs,
@@ -6,8 +7,14 @@ import {
   GoogleMap,
   Marker
 } from 'react-google-maps';
-import { markerData } from './data/index';
-import { useMarker } from './UseHooks/index';
+import { useMarker, usePlacesMarker } from './UseHooks/index';
+import MarkerWithLabel from 'react-google-maps/lib/components/addons/MarkerWithLabel';
+import { markerData, placesData as mockPlacesData } from './data/index';
+import { SearchBox } from 'react-google-maps/lib/components/places/SearchBox';
+import { SearchAddressInput } from './PlacesSearchBox/index';
+import { notification } from 'antd';
+import { centerMarkerLabel } from './helper-functions';
+import PlaceMarkerInfoWindow from './InfoWindows/PlaceMarkerInfoWindow/PlaceMarkerInfoWindow';
 const MapComponent = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${
@@ -31,6 +38,22 @@ const MapComponent = compose(
   withScriptjs,
   withGoogleMap
 )(props => {
+  //Map
+  const mapRef = useRef(null);
+  const [center, setCenter] = useState({ lat: 36.93, lng: -119.953 });
+  const [zoom, setZoom] = useState(4);
+  //Search
+  const searchBoxRef = useRef(null);
+  const [placeInfoWindowOpen, setPlaceInfoWindowOpen] = useState(false);
+  const {
+    //functions
+    setPlaceMarkers,
+    setupPlaceMarkers,
+    setActivePlaceMarker,
+    //state
+    placeMarkers,
+    activePlaceMarker
+  } = usePlacesMarker();
   const {
     //functions
     setMarkers,
@@ -38,17 +61,78 @@ const MapComponent = compose(
     //state
     markers
   } = useMarker();
+
   useEffect(() => {
     setInitialMarkers(markerData);
+    setPlaceMarkers(setupPlaceMarkers(mockPlacesData));
   }, []);
+
+  useEffect(() => {
+    mapRef.current.panTo(center);
+  }, [center]);
+
   return (
     <GoogleMap
-      defaultZoom={4}
+      ref={ref => (mapRef.current = ref)}
+      defaultZoom={zoom}
+      zoom={zoom}
       onClick={e => {
         console.log(e.latLng.lat(), e.latLng.lng());
       }}
-      defaultCenter={{ lat: 36.93, lng: -119.953 }}
+      defaultCenter={center}
     >
+      <SearchBox
+        ref={ref => (searchBoxRef.current = ref)}
+        controlPosition={google.maps.ControlPosition.TOP_CENTER}
+        onPlacesChanged={() => {
+          const markers = setupPlaceMarkers(searchBoxRef.current.getPlaces());
+          if (markers.length <= 0) {
+            notification.error({
+              message: 'Sorry your search input is invalid, please try again!'
+            });
+          } else if (markers.length === 1) {
+            const { lat, lng } = markers[0].position;
+            setZoom(7);
+            setPlaceMarkers(markers);
+            setCenter({ lat, lng });
+          } else {
+            setZoom(3);
+            setPlaceMarkers(markers);
+          }
+        }}
+      >
+        <SearchAddressInput />
+      </SearchBox>
+      {placeInfoWindowOpen && (
+        <PlaceMarkerInfoWindow
+          activeMarker={activePlaceMarker}
+          setCenter={setCenter}
+          setZoom={setZoom}
+          setInfoWindowOpen={setPlaceInfoWindowOpen}
+        />
+      )}
+      {placeMarkers.map(mark => {
+        return (
+          <MarkerWithLabel
+            key={mark.id}
+            position={mark.position}
+            labelStyle={mark.labelStyle}
+            onClick={() => {
+              setActivePlaceMarker(mark);
+              setPlaceInfoWindowOpen(true);
+            }}
+            labelAnchor={
+              new google.maps.Point(
+                centerMarkerLabel(mark.formatted_address.length),
+                20
+              )
+            }
+          >
+            <div>{mark.formatted_address}</div>
+          </MarkerWithLabel>
+        );
+      })}
+
       {markers.map(mark => {
         return <Marker key={mark.id} position={mark.position} />;
       })}
