@@ -7,10 +7,13 @@ import {
   GoogleMap,
   Marker
 } from 'react-google-maps';
-import { markerData } from './data/index';
+import { markerData, placesData as mockPlacesData } from './data/index';
 import { useMarker } from './UseHooks/index';
 import { SearchBox } from 'react-google-maps/lib/components/places/SearchBox';
-import { SearchAddressInput } from './PlacesSearchBox/index';
+import {
+  SearchAddressInput,
+  SelectionSearchModal
+} from './PlacesSearchBox/index';
 import { notification } from 'antd';
 const MapComponent = compose(
   withProps({
@@ -46,9 +49,11 @@ const MapComponent = compose(
   const mapRef = useRef(null);
   const [bounds, setBounds] = useState(null);
   const [center, setCenter] = useState({ lat: 36.93, lng: -119.953 });
-
+  const [searchModalOpen, setSearchModalOpen] = useState(true);
+  const [placesData, setPlacesData] = useState([]);
   const onPlacesChanged = () => {
     const places = searchBoxRef.current.getPlaces();
+    console.log(places);
     if (places.length === 0) {
       notification.error({
         message: 'No places could be found with that search input'
@@ -57,11 +62,14 @@ const MapComponent = compose(
       const { lat, lng } = places[0].geometry.location;
       setCenter({ lat: lat(), lng: lng() });
     } else {
+      setPlacesData(places);
+      setSearchModalOpen(true);
     }
   };
 
   useEffect(() => {
     setInitialMarkers(markerData);
+    setPlacesData(mockPlacesData);
   }, []);
   useEffect(() => {
     mapRef.current.panTo(center);
@@ -84,6 +92,12 @@ const MapComponent = compose(
       >
         <SearchAddressInput />
       </SearchBox>
+      <SelectionSearchModal
+        isVisible={searchModalOpen}
+        setIsVisible={setSearchModalOpen}
+        places={placesData}
+        setCenter={setCenter}
+      />
       {markers.map(mark => {
         return <Marker key={mark.id} position={mark.position} />;
       })}
