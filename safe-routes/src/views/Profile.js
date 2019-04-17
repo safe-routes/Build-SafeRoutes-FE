@@ -6,6 +6,7 @@ import Account from '../components/Account';
 import { deleteUser, updateUser } from '../actions';
 import { withRouter } from 'react-router-dom';
 import { message } from 'antd';
+
 const Profile = props => {
   const [password, setPassword] = useState('');
   const [newUsername, setNewUsername] = useState('');
@@ -47,7 +48,6 @@ const Profile = props => {
 };
 
 const mapStateToProps = ({ updateUserReducer }) => {
-  console.log(updateUserReducer);
   return {
     message: updateUserReducer.message
   };
