@@ -7,6 +7,7 @@ import {
 const initialState = {
   isDeleting: false
 };
+
 export const deleteUserReducer = (state = initialState, action) => {
   switch (action.type) {
     case DELETE_USER_START:
