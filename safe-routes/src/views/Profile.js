@@ -7,11 +7,12 @@ import { Typography, Row, Col, Input, Button, Popconfirm, message } from "antd";
 const { Title } = Typography;
 
 const Profile = props => {
-  const greetMessage = localStorage.getItem("greeting");
-  const id = localStorage.getItem("id");
-  const [username, setUsername] = useState("");
+  const [newUsername, setNewUsername] = useState("");
   const [password, setPassword] = useState("");
   const [updatingUser, setUpdatingUser] = useState(false);
+  const greetMessage = localStorage.getItem("greeting");
+  const id = localStorage.getItem("id");
+  const username = localStorage.getItem("username");
 
   const useDelete = () => {
     props
@@ -21,8 +22,21 @@ const Profile = props => {
   };
 
   const useUpdate = () => {
-    if (username && password) {
-      props.updateUser(id, { username, password });
+    const newUser = {
+      username,
+      newUsername,
+      password
+    };
+    if (newUsername && password) {
+      props
+        .updateUser(id, newUser)
+        .then(
+          () => (
+            localStorage.setItem("username", newUsername),
+            localStorage.setItem("greeting", `Welcome, ${newUsername}`)
+          )
+        )
+        .then(() => message.success("Username updated."));
     } else {
       message.error("Please fill in both fields");
     }
@@ -39,10 +53,10 @@ const Profile = props => {
         <Col xs={{ span: 50 }}>
           <Input
             placeholder="Update Username"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
+            value={newUsername}
+            onChange={e => setNewUsername(e.target.value)}
           />
-          {updatingUser && username ? (
+          {updatingUser && newUsername ? (
             <Input
               placeholder="Enter Password"
               value={password}
@@ -76,7 +90,9 @@ const Profile = props => {
 const mapStateToProps = ({ deleteUserReducer, updateUserReducer }) => {
   return {
     isDeleting: deleteUserReducer.isDeleting,
-    isUpdating: updateUserReducer.isUpdating
+    isUpdating: updateUserReducer.isUpdating,
+    message: updateUserReducer.message,
+    username: updateUserReducer.username
   };
 };
 export default Authenticate(
