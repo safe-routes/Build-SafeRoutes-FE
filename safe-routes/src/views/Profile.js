@@ -2,25 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import Authenticate from '../auth/Authenticate';
+import Account from '../components/Account';
 import { deleteUser, updateUser } from '../actions';
 import { withRouter } from 'react-router-dom';
-import { Typography, Row, Col, Input, Button, Popconfirm, message } from 'antd';
-const { Title } = Typography;
-
+import { message } from 'antd';
 const Profile = props => {
-  const [newUsername, setNewUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [updatingUser, setUpdatingUser] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const greetMessage = localStorage.getItem('greeting');
+  const [newUsername, setNewUsername] = useState('');
   const id = localStorage.getItem('id');
   const username = localStorage.getItem('username');
 
   const useDelete = () => {
     axios
       .post('auth/login', { username, password })
-      .then(res => props.deleteUser(id).then(props.history.push('/')))
-      .catch(message.error('Please check your password and try again'));
+      .then(res => props.deleteUser(id).then(res => props.history.push('/')))
+      .catch(err => message.error('Please check your password and try again'));
   };
 
   const useUpdate = () => {
@@ -51,67 +47,21 @@ const Profile = props => {
   };
 
   return (
-    <div>
-      <Title level={2}>{greetMessage}</Title>
-      <Row>
-        <Col xs={{ span: 50 }}>
-          <Input
-            placeholder="Update Username"
-            value={newUsername}
-            onChange={e => setNewUsername(e.target.value)}
-          />
-          {updatingUser && newUsername ? (
-            <Input
-              placeholder="Enter Password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              type="password"
-            />
-          ) : (
-            ''
-          )}
-          <Button
-            onClick={() => (updatingUser ? useUpdate() : setUpdatingUser(true))}
-            block
-          >
-            Update User
-          </Button>
-        </Col>
-
-        <Button
-          onClick={() => (isDeleting ? useDelete() : setIsDeleting(true))}
-          block
-          type="danger"
-        >
-          Delete User
-        </Button>
-        {isDeleting ? (
-          <Input
-            placeholder="Enter Password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            type="password"
-          />
-        ) : (
-          ''
-        )}
-      </Row>
-    </div>
+    <Account
+      newUsername={newUsername}
+      setNewUsername={setNewUsername}
+      password={password}
+      setPassword={setPassword}
+      useUpdate={useUpdate}
+      useDelete={useDelete}
+    />
   );
 };
 
-const mapStateToProps = ({ deleteUserReducer, updateUserReducer }) => {
-  return {
-    isDeleting: deleteUserReducer.isDeleting,
-    isUpdating: updateUserReducer.isUpdating,
-    message: updateUserReducer.message,
-    username: updateUserReducer.username
-  };
-};
 export default Authenticate(
   withRouter(
     connect(
-      mapStateToProps,
+      null,
       { deleteUser, updateUser }
     )(Profile)
   )

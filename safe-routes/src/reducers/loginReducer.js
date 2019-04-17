@@ -12,7 +12,8 @@ export const loginReducer = (state = initialState, action) => {
     case LOGIN_START:
       return {
         ...state,
-        isLoggingIn: true
+        isLoggingIn: true,
+        message: ''
       };
     case LOGIN_SUCCESS:
       return {

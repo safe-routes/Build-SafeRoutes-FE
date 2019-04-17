@@ -1,0 +1,79 @@
+import React, { useState } from 'react';
+import Authenticate from '../auth/Authenticate';
+import { connect } from 'react-redux';
+//Antd components
+import { Typography, Row, Col, Input, Button, Popconfirm, message } from 'antd';
+const { Title } = Typography;
+
+const Account = props => {
+  const [updatingUser, setUpdatingUser] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const greetMessage = localStorage.getItem('greeting');
+
+  return (
+    <div>
+      {console.log(props)}
+      <Title level={2}>{greetMessage}</Title>
+      <Row>
+        <Col xs={{ span: 50 }}>
+          <Input
+            placeholder="Update Username"
+            value={props.newUsername}
+            onChange={e => props.setNewUsername(e.target.value)}
+          />
+          {updatingUser && props.newUsername ? (
+            <Input
+              placeholder="Enter Password"
+              value={props.password}
+              onChange={e => props.setPassword(e.target.value)}
+              type="password"
+            />
+          ) : (
+            ''
+          )}
+          <Button
+            onClick={() =>
+              updatingUser ? props.useUpdate() : setUpdatingUser(true)
+            }
+            block
+          >
+            Update User
+          </Button>
+        </Col>
+
+        <Button
+          onClick={() => (isDeleting ? props.useDelete() : setIsDeleting(true))}
+          block
+          type="danger"
+        >
+          Delete User
+        </Button>
+        {isDeleting ? (
+          <Input
+            placeholder="Enter Password"
+            value={props.password}
+            onChange={e => props.setPassword(e.target.value)}
+            type="password"
+          />
+        ) : (
+          ''
+        )}
+      </Row>
+    </div>
+  );
+};
+
+const mapStateToProps = ({ deleteUserReducer, updateUserReducer }) => {
+  return {
+    isDeleting: deleteUserReducer.isDeleting,
+    isUpdating: updateUserReducer.isUpdating,
+    message: updateUserReducer.message,
+    username: updateUserReducer.username
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(Account);
