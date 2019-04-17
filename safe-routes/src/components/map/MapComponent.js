@@ -14,6 +14,7 @@ import { SearchBox } from 'react-google-maps/lib/components/places/SearchBox';
 import { SearchAddressInput } from './PlacesSearchBox/index';
 import { notification } from 'antd';
 import { centerMarkerLabel } from './helper-functions';
+import PlaceMarkerInfoWindow from './InfoWindows/PlaceMarkerInfoWindow/PlaceMarkerInfoWindow';
 const MapComponent = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${
@@ -43,6 +44,16 @@ const MapComponent = compose(
   const [zoom, setZoom] = useState(4);
   //Search
   const searchBoxRef = useRef(null);
+  const [placeInfoWindowOpen, setPlaceInfoWindowOpen] = useState(false);
+  const {
+    //functions
+    setPlaceMarkers,
+    setupPlaceMarkers,
+    setActivePlaceMarker,
+    //state
+    placeMarkers,
+    activePlaceMarker
+  } = usePlacesMarker();
   const {
     //functions
     setMarkers,
@@ -50,11 +61,6 @@ const MapComponent = compose(
     //state
     markers
   } = useMarker();
-  const {
-    placeMarkers,
-    setPlaceMarkers,
-    setupPlaceMarkers
-  } = usePlacesMarker();
 
   useEffect(() => {
     setInitialMarkers(markerData);
@@ -97,13 +103,24 @@ const MapComponent = compose(
       >
         <SearchAddressInput />
       </SearchBox>
-
+      {placeInfoWindowOpen && (
+        <PlaceMarkerInfoWindow
+          activeMarker={activePlaceMarker}
+          setCenter={setCenter}
+          setZoom={setZoom}
+          setInfoWindowOpen={setPlaceInfoWindowOpen}
+        />
+      )}
       {placeMarkers.map(mark => {
         return (
           <MarkerWithLabel
             key={mark.id}
             position={mark.position}
             labelStyle={mark.labelStyle}
+            onClick={() => {
+              setActivePlaceMarker(mark);
+              setPlaceInfoWindowOpen(true);
+            }}
             labelAnchor={
               new google.maps.Point(
                 centerMarkerLabel(mark.formatted_address.length),

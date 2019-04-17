@@ -1,6 +1,7 @@
 import { useState } from 'react';
 export default () => {
   const [placeMarkers, setPlaceMarkers] = useState([]);
+  const [activePlaceMarker, setActivePlaceMarker] = useState({});
   const labelStyle = {
     backgroundColor: '#131313',
     textAlign: 'center',
@@ -36,8 +37,10 @@ export default () => {
   return {
     //functions
     setPlaceMarkers,
+    setActivePlaceMarker,
     setupPlaceMarkers,
     //state
-    placeMarkers
+    placeMarkers,
+    activePlaceMarker
   };
 };
