@@ -31,12 +31,7 @@ const SelectionSearchModal = ({
           const { id, formatted_address } = place;
           const { lat, lng } = place.geometry.location;
           return (
-            <List.Item
-              key={id}
-              style={{ background: 'lightblue' }}
-              data-lat={lat()}
-              data-lng={lng()}
-            >
+            <List.Item key={id} data-lat={lat()} data-lng={lng()}>
               {formatted_address}
             </List.Item>
           );
