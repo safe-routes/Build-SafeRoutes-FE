@@ -113,8 +113,7 @@ const MapComponent = compose(
             onClick={async () => {
               await axios({
                 method: 'get',
-                url:
-                  'http://crashpredictr-env.jjrxtdfaz3.us-east-2.elasticbeanstalk.com/predict/ALAMEDA'
+                url: 'https://www.getsaferoutes.com/crashData.php'
               }).then(data => {
                 console.log(data);
               });
