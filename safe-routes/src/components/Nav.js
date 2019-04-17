@@ -20,6 +20,9 @@ const Nav = props => {
       <Menu.Item onClick={() => props.history.push('/map')}>
         <Icon type="dashboard" /> Map
       </Menu.Item>
+      <Menu.Item onClick={() => props.history.push('/groups')}>
+        <Icon type="team" /> Groups
+      </Menu.Item>
       {localStorage.getItem('token') ? (
         <Menu.Item onClick={() => logOut()}>
           <Icon type="poweroff" /> Log Out

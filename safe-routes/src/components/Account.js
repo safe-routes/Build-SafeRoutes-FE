@@ -14,7 +14,7 @@ const Account = props => {
 
   return (
     <div>
-      <Title level={2}>{greetMessage}</Title>
+      <Title level={1}>Account Settings</Title>
 
       <Row>
         <Col xs={{ span: 50 }}>
