@@ -77,6 +77,7 @@ const Profile = props => {
             Update User
           </Button>
         </Col>
+
         <Button
           onClick={() => (isDeleting ? useDelete() : setIsDeleting(true))}
           block
