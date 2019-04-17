@@ -12,7 +12,8 @@ import { useMarker } from './UseHooks/index';
 import { SearchBox } from 'react-google-maps/lib/components/places/SearchBox';
 import {
   SearchAddressInput,
-  SelectionSearchModal
+  SelectionSearchModal,
+  onPlacesChanged
 } from './PlacesSearchBox/index';
 import { notification } from 'antd';
 const MapComponent = compose(
@@ -38,6 +39,15 @@ const MapComponent = compose(
   withScriptjs,
   withGoogleMap
 )(props => {
+  //Map
+  const mapRef = useRef(null);
+  const [center, setCenter] = useState({ lat: 36.93, lng: -119.953 });
+  const [bounds, setBounds] = useState(null);
+  const [zoom, setZoom] = useState(4);
+  //Search
+  const searchBoxRef = useRef(null);
+  const [searchModalOpen, setSearchModalOpen] = useState(true);
+  const [placesData, setPlacesData] = useState([]);
   const {
     //functions
     setMarkers,
@@ -45,33 +55,13 @@ const MapComponent = compose(
     //state
     markers
   } = useMarker();
-  const searchBoxRef = useRef(null);
-  const mapRef = useRef(null);
-  const [bounds, setBounds] = useState(null);
-  const [center, setCenter] = useState({ lat: 36.93, lng: -119.953 });
-  const [searchModalOpen, setSearchModalOpen] = useState(true);
-  const [placesData, setPlacesData] = useState([]);
-  const [zoom, setZoom] = useState(4);
-  const onPlacesChanged = () => {
-    const places = searchBoxRef.current.getPlaces();
-    console.log(places);
-    if (places.length === 0) {
-      notification.error({
-        message: 'No places could be found with that search input'
-      });
-    } else if (places.length === 1) {
-      const { lat, lng } = places[0].geometry.location;
-      setCenter({ lat: lat(), lng: lng() });
-    } else {
-      setPlacesData(places);
-      setSearchModalOpen(true);
-    }
-  };
 
   useEffect(() => {
     setInitialMarkers(markerData);
+    //Just for styling and testing purposes
     setPlacesData(mockPlacesData);
   }, []);
+
   useEffect(() => {
     mapRef.current.panTo(center);
   }, [center]);
@@ -90,7 +80,16 @@ const MapComponent = compose(
         ref={ref => (searchBoxRef.current = ref)}
         bounds={bounds}
         controlPosition={google.maps.ControlPosition.TOP_CENTER}
-        onPlacesChanged={onPlacesChanged}
+        onPlacesChanged={() => {
+          onPlacesChanged(
+            searchBoxRef,
+            notification,
+            setCenter,
+            setPlacesData,
+            setSearchModalOpen,
+            setZoom
+          );
+        }}
       >
         <SearchAddressInput />
       </SearchBox>
