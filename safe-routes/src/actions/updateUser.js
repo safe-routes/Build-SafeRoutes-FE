@@ -11,8 +11,6 @@ export const updateUser = (id, info) => dispatch => {
     .then(res => {
       console.log(res);
       dispatch({ type: CHANGE_USER_SUCCESS, payload: res.data });
-      localStorage.setItem("username", res.data.username);
-      localStorage.setItem("greeting", `Welcome, ${res.data.username}`);
     })
     .catch(err => {
       dispatch({ type: CHANGE_USER_FAIL });

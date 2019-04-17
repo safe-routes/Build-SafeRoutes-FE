@@ -20,7 +20,9 @@ export const updateUserReducer = (state = initialState, action) => {
     case CHANGE_USER_SUCCESS:
       return {
         ...state,
-        isUpdating: false
+        isUpdating: false,
+        message: `Welcome ${action.payload.username}`,
+        username: action.payload.username
       };
     case CHANGE_USER_FAIL:
       return {

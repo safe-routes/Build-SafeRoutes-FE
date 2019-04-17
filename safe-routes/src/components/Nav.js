@@ -1,6 +1,6 @@
 import React from "react";
 import { Menu, Icon } from "antd";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 const Nav = props => {
   return (
