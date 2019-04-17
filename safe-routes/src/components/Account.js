@@ -12,7 +12,6 @@ const Account = props => {
 
   useEffect(() => setGreetMessage(localStorage.getItem('greeting')));
 
-  console.log('Component');
   return (
     <div>
       <Title level={2}>{greetMessage}</Title>
