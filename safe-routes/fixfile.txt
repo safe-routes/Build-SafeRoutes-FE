@@ -1,0 +1,4 @@
+Listed here are all bugs/errors that need to be resolved.
+
+Logout function throwing errors on certain logout states
+Welcome message sometimes displays on login component after 
