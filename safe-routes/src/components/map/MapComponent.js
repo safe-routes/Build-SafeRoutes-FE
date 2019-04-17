@@ -46,7 +46,7 @@ const MapComponent = compose(
   const [zoom, setZoom] = useState(4);
   //Search
   const searchBoxRef = useRef(null);
-  const [searchModalOpen, setSearchModalOpen] = useState(true);
+  const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [placesData, setPlacesData] = useState([]);
   const {
     //functions
