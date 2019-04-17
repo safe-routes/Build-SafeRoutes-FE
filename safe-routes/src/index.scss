@@ -10,6 +10,11 @@
     display: flex;
     justify-content: space-around;
     margin: 20px;
+
+    img {
+      height: 100%;
+      width: 40%;
+    }
   }
   h1 {
     color: gray;
@@ -22,6 +27,12 @@
   margin: 30px 0 ;
 }
 
+.ant-row {
+  img {
+    width: 100%;
+    margin-bottom: 20px
+  }
+}
 .ant-menu {
   position: absolute;
   top: 20px;

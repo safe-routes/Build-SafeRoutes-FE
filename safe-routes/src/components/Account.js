@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import Authenticate from '../auth/Authenticate';
 import { connect } from 'react-redux';
 //Antd components
-import { Typography, Row, Col, Input, Button, Popconfirm, message } from 'antd';
+import { Typography, Row, Col, Input, Button } from 'antd';
 const { Title } = Typography;
 
 const Account = props => {
@@ -13,8 +12,8 @@ const Account = props => {
 
   return (
     <div>
-      {console.log(props)}
       <Title level={2}>{greetMessage}</Title>
+
       <Row>
         <Col xs={{ span: 50 }}>
           <Input

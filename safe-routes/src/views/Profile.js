@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import Authenticate from '../auth/Authenticate';
@@ -40,10 +40,6 @@ const Profile = props => {
     } else {
       message.error('Please fill in both fields');
     }
-  };
-
-  const cancel = () => {
-    message.error('Canceled');
   };
 
   return (
