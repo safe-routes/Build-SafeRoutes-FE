@@ -46,6 +46,7 @@ const MapComponent = compose(
   const [zoom, setZoom] = useState(4);
   //Search
   const searchBoxRef = useRef(null);
+  const [isAdvanceSearchOpen, setIsAdvanceSearchOpen] = useState(false);
   const [placeInfoWindowOpen, setPlaceInfoWindowOpen] = useState(false);
   const {
     //functions
@@ -103,9 +104,12 @@ const MapComponent = compose(
           }
         }}
       >
-        <SearchAddressInput />
+        <SearchAddressInput setIsAdvanceSearchOpen={setIsAdvanceSearchOpen} />
       </SearchBox>
-      <WrappedSearchDrawerForm />
+      <WrappedSearchDrawerForm
+        setIsVisible={setIsAdvanceSearchOpen}
+        isVisible={isAdvanceSearchOpen}
+      />
       {markers.map(mark => {
         return (
           <Marker

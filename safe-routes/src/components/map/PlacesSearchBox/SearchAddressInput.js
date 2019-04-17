@@ -1,7 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-const SearchAddressInput = props => {
-  return <Input type="text" placeholder="Enter an address" {...props} />;
+import { Button } from 'antd';
+const SearchAddressInput = ({ setIsAdvanceSearchOpen }) => {
+  return (
+    <div>
+      <Input type="text" placeholder="Enter an address" />
+      <Button
+        onClick={() => {
+          setIsAdvanceSearchOpen(true);
+        }}
+      >
+        Advance Search
+      </Button>
+    </div>
+  );
 };
 
 const Input = styled.input`
