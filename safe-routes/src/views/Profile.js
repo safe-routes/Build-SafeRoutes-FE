@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Authenticate from "../auth/Authenticate";
 import { deleteUser, updateUser } from "../actions";
@@ -37,6 +37,8 @@ const Profile = props => {
           )
         )
         .then(() => message.success("Username updated."));
+      setNewUsername("");
+      setPassword("");
     } else {
       message.error("Please fill in both fields");
     }
