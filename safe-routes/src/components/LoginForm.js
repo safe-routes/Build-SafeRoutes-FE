@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Form, FormInput, FormBtn, color_pallete } from '../styles';
 
@@ -76,6 +76,7 @@ const LoginForm = props => {
           />
         ) : null}
 
+        {props.loginMessage && hasAccount ? props.loginMessage : ''}
         <FormBtn width="60%" height="60px">
           {hasAccount ? 'Login' : 'Sign Up'}
         </FormBtn>
