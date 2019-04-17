@@ -15,8 +15,8 @@ const SelectionSearchModal = ({
       }}
       title="Search Selection List"
       footer={[
-        <Button type="danger" onClick={() => setIsVisible(false)} key="exit">
-          Exit
+        <Button type="primary" onClick={() => setIsVisible(false)} key="exit">
+          Done
         </Button>
       ]}
     >
@@ -24,25 +24,21 @@ const SelectionSearchModal = ({
         itemLayout="horizontal"
         dataSource={places}
         onClick={e => {
-          // setIsVisible(false);
-          console.log(e.target);
           const { lat, lng } = e.target.dataset;
-          //   setIsVisible(false);
-          console.log(lat, lng);
           setCenter({ lat: Number(lat), lng: Number(lng) });
         }}
         renderItem={place => {
           const { id, formatted_address } = place;
           const { lat, lng } = place.geometry.location;
           return (
-            <PlaceListItem
+            <List.Item
               key={id}
               style={{ background: 'lightblue' }}
               data-lat={lat()}
               data-lng={lng()}
             >
               {formatted_address}
-            </PlaceListItem>
+            </List.Item>
           );
         }}
       />
@@ -50,9 +46,4 @@ const SelectionSearchModal = ({
   );
 };
 
-const PlaceListItem = styled(List.Item)`
-  &.ant-list-item:hover {
-    background: 'lightblue';
-  }
-`;
 export default SelectionSearchModal;
