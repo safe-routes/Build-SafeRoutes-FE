@@ -112,7 +112,7 @@ const MapComponent = compose(
             position={mark.position}
             onClick={async () => {
               await axios({
-                method: 'get',
+                method: 'post',
                 url: 'https://www.getsaferoutes.com/crashData.php'
               }).then(data => {
                 console.log(data);
