@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 //Antd components
 import { Typography, Row, Col, Input, Button } from 'antd';
@@ -8,8 +8,11 @@ const Account = props => {
   const [updatingUser, setUpdatingUser] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const greetMessage = localStorage.getItem('greeting');
+  const [greetMessage, setGreetMessage] = useState('');
 
+  useEffect(() => setGreetMessage(localStorage.getItem('greeting')));
+
+  console.log('Component');
   return (
     <div>
       <Title level={2}>{greetMessage}</Title>

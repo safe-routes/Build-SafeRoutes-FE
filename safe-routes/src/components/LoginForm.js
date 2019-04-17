@@ -24,10 +24,10 @@ const LoginForm = props => {
             username: username.toLowerCase(),
             password
           })
-          .then(() => props.history.push('/account-landing'))
+          .then(res => props.history.push('/account-landing'))
       : props
           .addUser(newUser)
-          .then(() => props.history.push('/account-landing'));
+          .then(res => props.history.push('/account-landing'));
   };
 
   const handleEmail = e => setEmail(e.target.value);

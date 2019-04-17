@@ -2,12 +2,12 @@ import {
   CHANGE_USER_START,
   CHANGE_USER_SUCCESS,
   CHANGE_USER_FAIL
-} from "../actions";
+} from '../actions';
 
 const initialState = {
   isUpdating: false,
-  message: "",
-  username: ""
+  message: '',
+  username: ''
 };
 
 export const updateUserReducer = (state = initialState, action) => {
@@ -27,7 +27,8 @@ export const updateUserReducer = (state = initialState, action) => {
     case CHANGE_USER_FAIL:
       return {
         ...state,
-        isUpdating: false
+        isUpdating: false,
+        message: 'Username could not be updated.'
       };
     default:
       return state;

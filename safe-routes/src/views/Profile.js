@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import Authenticate from '../auth/Authenticate';
@@ -15,7 +15,7 @@ const Profile = props => {
   const useDelete = () => {
     axios
       .post('auth/login', { username, password })
-      .then(res => props.deleteUser(id).then(res => props.history.push('/')))
+      .then(res => (props.deleteUser(id), props.history.push('/')))
       .catch(err => message.error('Please check your password and try again'));
   };
 
@@ -26,15 +26,7 @@ const Profile = props => {
       password
     };
     if (newUsername && password) {
-      props
-        .updateUser(id, newUser)
-        .then(
-          () => (
-            localStorage.setItem('username', newUsername),
-            localStorage.setItem('greeting', `Welcome, ${newUsername}`)
-          )
-        )
-        .then(() => message.success('Username updated.'));
+      props.updateUser(id, newUser);
       setNewUsername('');
       setPassword('');
     } else {
@@ -54,10 +46,16 @@ const Profile = props => {
   );
 };
 
+const mapStateToProps = ({ updateUserReducer }) => {
+  console.log(updateUserReducer);
+  return {
+    message: updateUserReducer.message
+  };
+};
 export default Authenticate(
   withRouter(
     connect(
-      null,
+      mapStateToProps,
       { deleteUser, updateUser }
     )(Profile)
   )
