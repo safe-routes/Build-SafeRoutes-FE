@@ -21,8 +21,8 @@ const LoginForm = props => {
     hasAccount
       ? props
           .login({
-            username: username,
-            password: password
+            username: username.toLowerCase(),
+            password
           })
           .then(() => props.history.push("/account-landing"))
       : props
