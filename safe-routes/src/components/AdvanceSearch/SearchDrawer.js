@@ -25,9 +25,8 @@ const CustomDrawer = styled(Drawer)`
     margin: 0;
   }
 `;
-const SearchDrawer = ({ form }) => {
+const SearchDrawer = ({ form, setIsVisible, isVisible }) => {
   const { getFieldDecorator } = form;
-  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
   const [moreOptionsToggled, setMoreOptionsToggled] = useState(false);
   const [isWorkzone, setIsWorkzone] = useState(false);
   const handleSubmit = () => {};
@@ -36,8 +35,8 @@ const SearchDrawer = ({ form }) => {
     <CustomDrawer
       title="Advance Search"
       closable={true}
-      visible={isDrawerOpen}
-      onClose={() => setIsDrawerOpen(false)}
+      visible={isVisible}
+      onClose={() => setIsVisible(false)}
     >
       <Form onSubmit={handleSubmit} className="advanced-search-form">
         <Form.Item label="Select County">
@@ -46,7 +45,11 @@ const SearchDrawer = ({ form }) => {
           })(
             <Select showSearch placeholder="Select a County">
               {counties.map(county => {
-                return <Option value={county.toUpperCase()}>{county}</Option>;
+                return (
+                  <Option key={county} value={county.toUpperCase()}>
+                    {county}
+                  </Option>
+                );
               })}
             </Select>
           )}
@@ -88,7 +91,9 @@ const SearchDrawer = ({ form }) => {
                 <Select showSearch placeholder="Select Condition">
                   {weatherChoices.map(weather => {
                     return (
-                      <Option value={weather.toUpperCase()}>{weather}</Option>
+                      <Option key={weather} value={weather.toUpperCase()}>
+                        {weather}
+                      </Option>
                     );
                   })}
                 </Select>
@@ -100,7 +105,11 @@ const SearchDrawer = ({ form }) => {
               })(
                 <Select showSearch placeholder="Select Condition">
                   {lgtConditionChoices.map(lgt => {
-                    return <Option value={lgt.toUpperCase()}>{lgt}</Option>;
+                    return (
+                      <Option key={lgt} value={lgt.toUpperCase()}>
+                        {lgt}
+                      </Option>
+                    );
                   })}
                 </Select>
               )}
@@ -127,7 +136,7 @@ const SearchDrawer = ({ form }) => {
     </CustomDrawer>
   );
 };
-const WrappedSearchDrawerForm = Form.create({ name: 'normal_login' })(
+const WrappedSearchDrawerForm = Form.create({ name: 'advance-search-form' })(
   SearchDrawer
 );
 
