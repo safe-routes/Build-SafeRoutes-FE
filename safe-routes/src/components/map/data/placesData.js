@@ -2,7 +2,7 @@ export default [
   {
     formatted_address: 'Georgia, USA',
     geometry: {
-      location: { lat: 32.1656221, lng: -82.90007509999998 },
+      location: { lat: () => 32.1656221, lng: () => -82.90007509999998 },
       viewport: {
         south: 30.3555908,
         west: -85.60516489999998,
@@ -30,7 +30,7 @@ export default [
   {
     formatted_address: 'Georgia',
     geometry: {
-      location: { lat: 42.315407, lng: 43.356892000000016 },
+      location: { lat: () => 42.315407, lng: () => 43.356892000000016 },
       viewport: {
         south: 41.054942,
         west: 39.97920010000007,
