@@ -10,13 +10,14 @@ const Profile = props => {
   const [newUsername, setNewUsername] = useState("");
   const [password, setPassword] = useState("");
   const [updatingUser, setUpdatingUser] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const greetMessage = localStorage.getItem("greeting");
   const id = localStorage.getItem("id");
   const username = localStorage.getItem("username");
 
   const useDelete = () => {
     props
-      .deleteUser(id)
+      .deleteUser({ username, password }, id)
       .then(message.success("User Removed"))
       .then(props.history.push("/"));
   };
@@ -75,15 +76,23 @@ const Profile = props => {
             Update User
           </Button>
         </Col>
-        <Popconfirm
-          title="Are you sure you want to delete this account? All data will be removed"
-          onConfirm={() => useDelete()}
-          onCancel={cancel}
+        <Button
+          onClick={() => (isDeleting ? useDelete() : setIsDeleting(true))}
+          block
+          type="danger"
         >
-          <Button block type="danger">
-            Delete User
-          </Button>
-        </Popconfirm>
+          Delete User
+        </Button>
+        {isDeleting ? (
+          <Input
+            placeholder="Enter Password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            type="password"
+          />
+        ) : (
+          ""
+        )}
       </Row>
     </div>
   );
