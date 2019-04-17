@@ -51,6 +51,7 @@ const MapComponent = compose(
   const [center, setCenter] = useState({ lat: 36.93, lng: -119.953 });
   const [searchModalOpen, setSearchModalOpen] = useState(true);
   const [placesData, setPlacesData] = useState([]);
+  const [zoom, setZoom] = useState(4);
   const onPlacesChanged = () => {
     const places = searchBoxRef.current.getPlaces();
     console.log(places);
@@ -69,6 +70,7 @@ const MapComponent = compose(
 
   useEffect(() => {
     setInitialMarkers(markerData);
+    setPlacesData(mockPlacesData);
   }, []);
   useEffect(() => {
     mapRef.current.panTo(center);
@@ -77,7 +79,8 @@ const MapComponent = compose(
   return (
     <GoogleMap
       ref={ref => (mapRef.current = ref)}
-      defaultZoom={4}
+      defaultZoom={zoom}
+      zoom={zoom}
       onClick={e => {
         console.log(e.latLng.lat(), e.latLng.lng());
       }}
@@ -96,6 +99,7 @@ const MapComponent = compose(
         setIsVisible={setSearchModalOpen}
         places={placesData}
         setCenter={setCenter}
+        setZoom={setZoom}
       />
       {markers.map(mark => {
         return <Marker key={mark.id} position={mark.position} />;

@@ -5,7 +5,8 @@ const SelectionSearchModal = ({
   isVisible,
   setIsVisible,
   setCenter,
-  places
+  places,
+  setZoom
 }) => {
   return (
     <Modal
@@ -15,7 +16,14 @@ const SelectionSearchModal = ({
       }}
       title="Search Selection List"
       footer={[
-        <Button type="primary" onClick={() => setIsVisible(false)} key="exit">
+        <Button
+          type="primary"
+          key="exit"
+          onClick={() => {
+            setZoom(7);
+            setIsVisible(false);
+          }}
+        >
           Done
         </Button>
       ]}
