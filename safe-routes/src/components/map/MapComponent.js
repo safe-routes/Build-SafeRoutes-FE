@@ -11,11 +11,7 @@ import { useMarker, usePlacesMarker } from './UseHooks/index';
 import MarkerWithLabel from 'react-google-maps/lib/components/addons/MarkerWithLabel';
 import { markerData, placesData as mockPlacesData } from './data/index';
 import { SearchBox } from 'react-google-maps/lib/components/places/SearchBox';
-import {
-  SearchAddressInput,
-  SelectionSearchModal,
-  onPlacesChanged
-} from './PlacesSearchBox/index';
+import { SearchAddressInput } from './PlacesSearchBox/index';
 import { notification } from 'antd';
 import { centerMarkerLabel } from './helper-functions';
 const MapComponent = compose(
@@ -47,8 +43,6 @@ const MapComponent = compose(
   const [zoom, setZoom] = useState(4);
   //Search
   const searchBoxRef = useRef(null);
-  const [searchModalOpen, setSearchModalOpen] = useState(false);
-  const [placesData, setPlacesData] = useState([]);
   const {
     //functions
     setMarkers,
@@ -64,8 +58,7 @@ const MapComponent = compose(
 
   useEffect(() => {
     setInitialMarkers(markerData);
-    //Just for styling and testing purposes
-    setPlacesData(mockPlacesData);
+    setPlaceMarkers(setupPlaceMarkers(mockPlacesData));
   }, []);
 
   useEffect(() => {
@@ -104,13 +97,7 @@ const MapComponent = compose(
       >
         <SearchAddressInput />
       </SearchBox>
-      {/* <SelectionSearchModal
-        isVisible={searchModalOpen}
-        setIsVisible={setSearchModalOpen}
-        places={placesData}
-        setCenter={setCenter}
-        setZoom={setZoom}
-      /> */}
+
       {placeMarkers.map(mark => {
         return (
           <MarkerWithLabel
