@@ -1,33 +1,33 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { Form, FormInput, FormBtn, color_pallete } from "../styles";
+import { Form, FormInput, FormBtn, color_pallete } from '../styles';
 
-import AddAccountItems from "./AddAccount";
+import AddAccountItems from './AddAccount';
 
-import { connect } from "react-redux";
-import Loader from "react-loader-spinner";
-import { withRouter } from "react-router-dom";
-import { addUser, login } from "../actions";
+import { connect } from 'react-redux';
+import Loader from 'react-loader-spinner';
+import { withRouter } from 'react-router-dom';
+import { addUser, login } from '../actions';
 const LoginForm = props => {
   const [hasAccount, setHasAccount] = useState(true);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
 
   const useSubmit = e => {
     e.preventDefault();
-    localStorage.setItem("username", username);
+    localStorage.setItem('username', username);
     hasAccount
       ? props
           .login({
             username: username.toLowerCase(),
             password
           })
-          .then(() => props.history.push("/account-landing"))
+          .then(() => props.history.push('/account-landing'))
       : props
           .addUser(newUser)
-          .then(() => props.history.push("/account-landing"));
+          .then(() => props.history.push('/account-landing'));
   };
 
   const handleEmail = e => setEmail(e.target.value);
@@ -49,7 +49,7 @@ const LoginForm = props => {
         height="400px"
         onSubmit={useSubmit}
       >
-        <h1>{hasAccount ? "Login" : "Sign Up"}</h1>
+        <h1>{hasAccount ? 'Login' : 'Sign Up'}</h1>
         <FormInput
           placeholder="Enter Username"
           name="username"
@@ -76,14 +76,13 @@ const LoginForm = props => {
           />
         ) : null}
 
-        {hasAccount ? <p>{props.loginMessage}</p> : <p>{props.message}</p>}
         <FormBtn width="60%" height="60px">
-          {hasAccount ? "Login" : "Sign Up"}
+          {hasAccount ? 'Login' : 'Sign Up'}
         </FormBtn>
         <a href="#" onClick={() => setHasAccount(!hasAccount)}>
           {hasAccount
-            ? "No account? Create one here."
-            : "Already have an account? Log in here"}
+            ? 'No account? Create one here.'
+            : 'Already have an account? Log in here'}
         </a>
       </Form>
     </div>
