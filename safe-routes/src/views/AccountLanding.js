@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import Authenticate from "../auth/Authenticate";
 import { Link } from "react-router-dom";
+import Nav from "../components/Nav";
 
 const AccountLanding = props => {
   const [message, setMessage] = useState(localStorage.getItem("greeting"));

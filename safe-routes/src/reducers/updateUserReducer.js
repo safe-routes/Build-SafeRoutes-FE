@@ -5,7 +5,9 @@ import {
 } from "../actions";
 
 const initialState = {
-  isUpdating: false
+  isUpdating: false,
+  message: "",
+  username: ""
 };
 
 export const updateUserReducer = (state = initialState, action) => {
