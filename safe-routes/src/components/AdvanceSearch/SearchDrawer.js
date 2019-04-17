@@ -29,8 +29,12 @@ const SearchDrawer = ({ form, setIsVisible, isVisible }) => {
   const { getFieldDecorator } = form;
   const [moreOptionsToggled, setMoreOptionsToggled] = useState(false);
   const [isWorkzone, setIsWorkzone] = useState(false);
+  const [county, setCounty] = useState();
+  const selectChange = value => {
+    setCounty(value);
+    console.log(county);
+  };
   const handleSubmit = () => {};
-
   return (
     <CustomDrawer
       title="Advance Search"
@@ -43,7 +47,11 @@ const SearchDrawer = ({ form, setIsVisible, isVisible }) => {
           {getFieldDecorator('county', {
             rules: [{ required: true, message: 'Please select a county!' }]
           })(
-            <Select showSearch placeholder="Select a County">
+            <Select
+              showSearch
+              placeholder="Select a County"
+              onChange={selectChange}
+            >
               {counties.map(county => {
                 return (
                   <Option key={county} value={county.toUpperCase()}>
