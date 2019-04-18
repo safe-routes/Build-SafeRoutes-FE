@@ -3,7 +3,7 @@ import { Menu, Icon } from 'antd';
 import { withRouter } from 'react-router-dom';
 
 const Nav = props => {
-  const [current, setCurrent] = useState('home');
+  const [current, setCurrent] = useState('');
   const logOut = () => {
     localStorage.clear();
     props.history.push('/');
@@ -13,12 +13,13 @@ const Nav = props => {
     setCurrent(e.key);
   };
 
+  console.log(current);
   return (
     <Menu
       onClick={e => handleClick(e)}
       mode="horizontal"
       selectedKeys={[current]}
-      defaultSelectedKeys={['home']}
+      defaultSelectedKeys={[current]}
     >
       <Menu.Item
         key="home"
