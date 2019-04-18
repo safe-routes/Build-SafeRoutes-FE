@@ -12,6 +12,9 @@ const PlaceMarkerInfoWindow = ({
   return (
     <InfoWindow
       position={activeMarker.position}
+      onCloseClick={() => {
+        setInfoWindowOpen(false);
+      }}
       options={{
         pixelOffset: new google.maps.Size(0, -40),
         disableAutoPan: false
