@@ -53,7 +53,7 @@ const SearchDrawer = ({ form, setIsVisible, isVisible }) => {
     if (lgt) {
       url += `&lgt=${lgt}`;
     }
-    if (isWorkzone) {
+    if (isWorkzone === true || isWorkzone === false) {
       const value = isWorkzone ? 1 : 0;
       url += `&isWorkzone=${value}`;
     }
