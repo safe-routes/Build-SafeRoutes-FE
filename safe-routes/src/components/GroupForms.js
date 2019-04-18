@@ -22,6 +22,7 @@ const AddGroupForm = props => {
 
   return (
     <form className="group-form">
+      <h3>{props.type === 'Create' ? 'Create Group' : 'Join Group'}</h3>
       <Input
         value={groupName}
         onChange={e => setGroupName(e.target.value)}
@@ -33,7 +34,7 @@ const AddGroupForm = props => {
         placeholder="Group Password"
         type="password"
       />
-      <Button onClick={() => props.useCreateGroup()}>Create Group</Button>
+      <Button onClick={() => useCreateGroup()}>{props.type}</Button>
     </form>
   );
 };
