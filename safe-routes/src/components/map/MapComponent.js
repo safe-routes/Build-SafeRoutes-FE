@@ -11,7 +11,7 @@ import { useMarker, usePlacesMarker } from './UseHooks/index';
 import MarkerWithLabel from 'react-google-maps/lib/components/addons/MarkerWithLabel';
 import { markerData, placesData as mockPlacesData } from './data/index';
 import { SearchBox } from 'react-google-maps/lib/components/places/SearchBox';
-import { SearchAddressInput, TitleText } from './PlacesSearchBox/index';
+import { SearchAddressInput } from './PlacesSearchBox/index';
 import { notification } from 'antd';
 import { centerMarkerLabel } from './helper-functions';
 import PlaceMarkerInfoWindow from './InfoWindows/PlaceMarkerInfoWindow/PlaceMarkerInfoWindow';
@@ -102,10 +102,7 @@ const MapComponent = compose(
           }
         }}
       >
-        <div>
-          <SearchAddressInput />
-          <TitleText>Safe Routes</TitleText>
-        </div>
+        <SearchAddressInput />
       </SearchBox>
 
       {markers.map(mark => {
