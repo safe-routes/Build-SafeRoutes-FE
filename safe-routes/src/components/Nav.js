@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Menu, Icon } from 'antd';
 import { withRouter } from 'react-router-dom';
 
 const Nav = props => {
+  const [current, setCurrent] = useState('');
   const logOut = () => {
     localStorage.clear();
     props.history.push('/');
   };
 
+  const handleClick = e => {
+    setCurrent(e.key);
+  };
+
   return (
-    <Menu mode="horizontal">
+    <Menu
+      onClick={e => handleClick(e)}
+      mode="horizontal"
+      selectedKeys={[current]}
+    >
       <Menu.Item onClick={() => props.history.push('/account-landing')}>
         <Icon type="home" />
         Home

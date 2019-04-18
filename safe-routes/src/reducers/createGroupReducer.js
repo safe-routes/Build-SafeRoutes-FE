@@ -6,25 +6,27 @@ import {
 
 const initialState = {
   message: '',
-  groups: []
+  isCreating: false
 };
 
 export const createGroupReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_GROUP_START:
       return {
-        ...state
+        ...state,
+        isCreating: true
       };
     case CREATE_GROUP_SUCCESS:
       return {
         ...state,
         message: `Group ${action.payload.name} created.`,
-        groups: [...state.groups, action.payload.name]
+        isCreating: false
       };
     case CREATE_GROUP_FAIL:
       return {
         ...state,
-        message: `Could not create group`
+        message: `Could not create group`,
+        isCreating: false
       };
     default:
       return state;

@@ -5,22 +5,26 @@ import {
 } from '../actions';
 
 const initialState = {
-  message: ''
+  message: '',
+  isJoining: false
 };
 
 export const joinGroupReducer = (state = initialState, action) => {
   switch (action.type) {
     case JOIN_GROUP_START:
       return {
-        ...state
+        ...state,
+        isJoining: true
       };
     case JOIN_GROUP_SUCCESS:
       return {
-        ...state
+        ...state,
+        isJoining: false
       };
     case JOIN_GROUP_FAIL:
       return {
-        ...state
+        ...state,
+        isJoining: false
       };
     default:
       return state;

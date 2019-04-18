@@ -9,7 +9,7 @@ export const color_pallete = {
 };
 
 export const Container = styled.div`
-  height: 100vh;
+  height: 100%;
   font-size: 1.5rem;
   display: flex;
   align-items: center;
