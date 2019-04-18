@@ -76,7 +76,10 @@ const SearchDrawer = ({
         data: prepend,
         timeout: 1000 * 10
       });
-      setPredictInfo(data);
+      setPredictInfo({
+        county,
+        ...data
+      });
       console.log(data);
     } catch (err) {
       console.log(err);

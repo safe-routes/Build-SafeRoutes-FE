@@ -18,7 +18,7 @@ import PlaceMarkerInfoWindow from './InfoWindows/PlaceMarkerInfoWindow/PlaceMark
 import axios from 'axios';
 import WrappedSearchDrawerForm from '../AdvanceSearch/SearchDrawer';
 import MarkerInfoWindow from './InfoWindows/MarkerInfoWindow/MarkerInfoWindow';
-import { Tag } from 'antd';
+import { Progress, Card } from 'antd';
 const MapComponent = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${
@@ -122,12 +122,21 @@ const MapComponent = compose(
         setMarkers={setInitialMarkers}
         setPredictInfo={setPredictInfo}
       />
-      {predictInfo.prediction ? (
-        <Tag color="#f50">
-          County has a {predictInfo.prediction.toFixed(2)}% chance of an
-          accident occuring in the area.
-        </Tag>
-      ) : null}
+      <Card
+        bodyStyle={{
+          width: '300px',
+          position: 'absolute',
+          bottom: '0',
+          left: '0',
+          background: 'white'
+        }}
+      >
+        {predictInfo.county
+          ? `${predictInfo.county} county accident prediction rate.`
+          : `No County has been selected.`}
+        <Progress percent={Math.round(Number(predictInfo.prediction))} />
+      </Card>
+
       {markerInfoWindowOpen && (
         <MarkerInfoWindow
           activeMarker={activeMarker}
