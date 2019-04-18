@@ -15,6 +15,7 @@ import { SearchAddressInput } from './PlacesSearchBox/index';
 import { notification } from 'antd';
 import { centerMarkerLabel } from './helper-functions';
 import PlaceMarkerInfoWindow from './InfoWindows/PlaceMarkerInfoWindow/PlaceMarkerInfoWindow';
+import axios from 'axios';
 const MapComponent = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${
@@ -64,7 +65,7 @@ const MapComponent = compose(
 
   useEffect(() => {
     setInitialMarkers(markerData);
-    setPlaceMarkers(setupPlaceMarkers(mockPlacesData));
+    // setPlaceMarkers(setupPlaceMarkers(mockPlacesData));
   }, []);
 
   useEffect(() => {
@@ -103,6 +104,23 @@ const MapComponent = compose(
       >
         <SearchAddressInput />
       </SearchBox>
+
+      {markers.map(mark => {
+        return (
+          <Marker
+            key={mark.id}
+            position={mark.position}
+            onClick={async () => {
+              await axios({
+                method: 'post',
+                url: 'https://www.getsaferoutes.com/crashData.php'
+              }).then(data => {
+                console.log(data);
+              });
+            }}
+          />
+        );
+      })}
       {placeInfoWindowOpen && (
         <PlaceMarkerInfoWindow
           activeMarker={activePlaceMarker}
@@ -131,10 +149,6 @@ const MapComponent = compose(
             <div>{mark.formatted_address}</div>
           </MarkerWithLabel>
         );
-      })}
-
-      {markers.map(mark => {
-        return <Marker key={mark.id} position={mark.position} />;
       })}
     </GoogleMap>
   );
