@@ -65,7 +65,7 @@ const MapComponent = compose(
   const {
     //functions
     setMarkers,
-    setInitialMarkers,
+    setupMarkers,
     setActiveMarker,
     //state
     markers,
@@ -74,7 +74,7 @@ const MapComponent = compose(
 
   const [predictInfo, setPredictInfo] = useState({});
   useEffect(() => {
-    setInitialMarkers(markerData);
+    setupMarkers(markerData);
     // setPlaceMarkers(setupPlaceMarkers(mockPlacesData));
   }, []);
 
@@ -119,7 +119,7 @@ const MapComponent = compose(
       <WrappedSearchDrawerForm
         setIsVisible={setIsAdvanceSearchOpen}
         isVisible={isAdvanceSearchOpen}
-        setMarkers={setInitialMarkers}
+        setMarkers={setupMarkers}
         setPredictInfo={setPredictInfo}
       />
       <Card

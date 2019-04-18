@@ -3,7 +3,7 @@ import uuidv4 from 'uuidv4';
 export default () => {
   const [markers, setMarkers] = useState([]);
   const [activeMarker, setActiveMarker] = useState({});
-  const setInitialMarkers = markers => {
+  const setupMarkers = markers => {
     return setMarkers(
       markers.map(mark => {
         return {
@@ -32,12 +32,12 @@ export default () => {
         };
       })
     );
-  }; //setInitialMarkers
+  }; //setupMarkers
 
   return {
     //functions
     setMarkers,
-    setInitialMarkers,
+    setupMarkers,
     setActiveMarker,
     //state
     markers,
