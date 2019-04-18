@@ -13,7 +13,7 @@ const Account = props => {
   useEffect(() => setGreetMessage(localStorage.getItem('greeting')));
 
   return (
-    <div>
+    <div className="account-settings">
       <Title level={1}>Account Settings</Title>
 
       <Row>

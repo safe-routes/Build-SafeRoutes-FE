@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 const Nav = props => {
   const [current, setCurrent] = useState('');
+
   const logOut = () => {
     localStorage.clear();
     props.history.push('/');
