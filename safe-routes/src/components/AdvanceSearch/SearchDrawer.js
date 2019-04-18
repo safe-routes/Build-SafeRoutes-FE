@@ -39,23 +39,23 @@ const SearchDrawer = ({ form, setIsVisible, isVisible }) => {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    let url = `http://crashpredictr-env.jjrxtdfaz3.us-east-2.elasticbeanstalk.com/predict/${county}`;
+    let url = `http://crashpredictr-env.jjrxtdfaz3.us-east-2.elasticbeanstalk.com/predict/${county}?`;
 
     if (weather) {
-      url += `?weather=${weather}`;
+      url += `&weather=${weather}`;
     }
     if (month) {
-      url += `?month=${month}`;
+      url += `&month=${month}`;
     }
     if (day) {
-      url += `?day=${day}`;
+      url += `&day=${day}`;
     }
     if (lgt) {
-      url += `?lgt=${lgt}`;
+      url += `&lgt=${lgt}`;
     }
     if (isWorkzone) {
       const value = isWorkzone ? 1 : 0;
-      url += `?isWorkzone=${value}`;
+      url += `&isWorkzone=${value}`;
     }
     console.log(url);
     // console.log(weather, month, day, lgt, isWorkzone);
