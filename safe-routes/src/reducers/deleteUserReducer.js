@@ -2,7 +2,7 @@ import {
   DELETE_USER_START,
   DELETE_USER_SUCCESS,
   DELETE_USER_FAIL
-} from "../actions";
+} from '../actions';
 
 const initialState = {
   isDeleting: false
