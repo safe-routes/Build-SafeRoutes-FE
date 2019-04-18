@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const color_pallete = {
-  primary: "#6b8a8f",
-  secondary: "#c3b690",
-  accent_1: "#fccb8d",
-  accent_2: "#fec872",
-  accent_3: "#e9993d"
+  primary: '#6b8a8f',
+  secondary: '#c3b690',
+  accent_1: '#fccb8d',
+  accent_2: '#fec872',
+  accent_3: '#e9993d'
 };
 
 export const Container = styled.div`
@@ -18,7 +18,12 @@ export const Container = styled.div`
   .login-container {
     width: 100%;
   }
+
+  .login-form-container {
+    @media (min-height: );
+  }
 `;
+
 export const Form = styled.form`
   background: ${props => props.background};
   color: white;
@@ -32,6 +37,11 @@ export const Form = styled.form`
   justify-content: space-around;
   border-radius: 7px;
   font-size: 1rem;
+
+  @media (max-width: 700px) {
+    width: 95%;
+    height: 90%;
+  }
 
   h1 {
     margin-bottom: 10px;
@@ -50,8 +60,9 @@ export const FormInput = styled.input`
   border-bottom: 1.5px solid ${color_pallete.accent_3};
   margin: 5px;
   height: 25px;
-  width: ${props => (props.width ? props.width : "50%")};
-  height: ${props => (props.height ? props.height : "30px")}
+  width: ${props => (props.width ? props.width : '50%')};
+  height: ${props => (props.height ? props.height : '30px')}
+
   background: none;
   text-align: center;
   ::placeholder {
@@ -59,7 +70,7 @@ export const FormInput = styled.input`
   }
 `;
 export const FormBtn = styled.button`
-  width: ${props => (props.width ? props.width : "50%")};
+  width: ${props => (props.width ? props.width : '50%')};
   height: ${props => props.height};
   background: ${color_pallete.accent_3};
   border: none;
