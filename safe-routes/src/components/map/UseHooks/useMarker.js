@@ -2,6 +2,7 @@ import { useState } from 'react';
 import uuidv4 from 'uuidv4';
 export default () => {
   const [markers, setMarkers] = useState([]);
+  const [activeMarker, setActiveMarker] = useState({});
   const setInitialMarkers = markers => {
     return setMarkers(
       markers.map(mark => {
@@ -21,7 +22,9 @@ export default () => {
     //functions
     setMarkers,
     setInitialMarkers,
+    setActiveMarker,
     //state
-    markers
+    markers,
+    activeMarker
   };
 };

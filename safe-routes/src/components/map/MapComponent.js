@@ -17,6 +17,7 @@ import { centerMarkerLabel } from './helper-functions';
 import PlaceMarkerInfoWindow from './InfoWindows/PlaceMarkerInfoWindow/PlaceMarkerInfoWindow';
 import axios from 'axios';
 import WrappedSearchDrawerForm from '../AdvanceSearch/SearchDrawer';
+import MarkerInfoWindow from './InfoWindows/MarkerInfoWindow/MarkerInfoWindow';
 const MapComponent = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${
@@ -57,12 +58,17 @@ const MapComponent = compose(
     placeMarkers,
     activePlaceMarker
   } = usePlacesMarker();
+
+  //Markers
+  const [markerInfoWindowOpen, setMarkerInfoWindowOpen] = useState(false);
   const {
     //functions
     setMarkers,
     setInitialMarkers,
+    setActiveMarker,
     //state
-    markers
+    markers,
+    activeMarker
   } = useMarker();
 
   useEffect(() => {
@@ -81,6 +87,8 @@ const MapComponent = compose(
       zoom={zoom}
       onClick={e => {
         console.log(e.latLng.lat(), e.latLng.lng());
+        setMarkerInfoWindowOpen(false);
+        setPlaceInfoWindowOpen(false);
       }}
       defaultCenter={center}
     >
@@ -110,18 +118,15 @@ const MapComponent = compose(
         setIsVisible={setIsAdvanceSearchOpen}
         isVisible={isAdvanceSearchOpen}
       />
+      {markerInfoWindowOpen && <MarkerInfoWindow activeMarker={activeMarker} />}
       {markers.map(mark => {
         return (
           <Marker
             key={mark.id}
             position={mark.position}
-            onClick={async () => {
-              await axios({
-                method: 'post',
-                url: 'https://www.getsaferoutes.com/crashData.php'
-              }).then(data => {
-                console.log(data);
-              });
+            onClick={() => {
+              setActiveMarker(mark);
+              setMarkerInfoWindowOpen(true);
             }}
           />
         );
