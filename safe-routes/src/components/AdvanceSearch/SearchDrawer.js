@@ -30,11 +30,36 @@ const SearchDrawer = ({ form, setIsVisible, isVisible }) => {
   const [moreOptionsToggled, setMoreOptionsToggled] = useState(false);
   const [isWorkzone, setIsWorkzone] = useState(false);
   const [county, setCounty] = useState();
-  const selectChange = value => {
-    setCounty(value);
-    console.log(county);
+  const [day, setDay] = useState();
+  const [month, setMonth] = useState();
+  const [weather, setWeather] = useState();
+  const [lgt, setLgt] = useState();
+  const monthChange = (date, dateString) => {
+    setMonth(date.format('MMMM'));
   };
-  const handleSubmit = () => {};
+  const handleSubmit = e => {
+    e.preventDefault();
+    let url = `http://crashpredictr-env.jjrxtdfaz3.us-east-2.elasticbeanstalk.com/predict/${county}`;
+
+    if (weather) {
+      url += `?weather=${weather}`;
+    }
+    if (month) {
+      url += `?month=${month}`;
+    }
+    if (day) {
+      url += `?day=${day}`;
+    }
+    if (lgt) {
+      url += `?lgt=${lgt}`;
+    }
+    if (isWorkzone) {
+      const value = isWorkzone ? 1 : 0;
+      url += `?isWorkzone=${value}`;
+    }
+    console.log(url);
+    // console.log(weather, month, day, lgt, isWorkzone);
+  };
   return (
     <CustomDrawer
       title="Advance Search"
@@ -50,7 +75,7 @@ const SearchDrawer = ({ form, setIsVisible, isVisible }) => {
             <Select
               showSearch
               placeholder="Select a County"
-              onChange={selectChange}
+              onChange={setCounty}
             >
               {counties.map(county => {
                 return (
@@ -79,15 +104,19 @@ const SearchDrawer = ({ form, setIsVisible, isVisible }) => {
             <Form.Item label="Select Month">
               {getFieldDecorator('month-picker', {
                 rules: [{ type: 'object', required: false }]
-              })(<MonthPicker />)}
+              })(<MonthPicker onChange={monthChange} />)}
             </Form.Item>
             <Form.Item label="Select Day">
               {getFieldDecorator('day-picker', {
                 rules: [{ required: false, message: '' }]
               })(
-                <Select showSearch placeholder="Select a Day">
+                <Select showSearch placeholder="Select a Day" onChange={setDay}>
                   {days.map(day => {
-                    return <Option value={day.toUpperCase()}>{day}</Option>;
+                    return (
+                      <Option value={day.toUpperCase()} key={day}>
+                        {day}
+                      </Option>
+                    );
                   })}
                 </Select>
               )}
@@ -96,7 +125,11 @@ const SearchDrawer = ({ form, setIsVisible, isVisible }) => {
               {getFieldDecorator('weather-picker', {
                 rules: [{ required: false, message: '' }]
               })(
-                <Select showSearch placeholder="Select Condition">
+                <Select
+                  showSearch
+                  placeholder="Select Condition"
+                  onChange={setWeather}
+                >
                   {weatherChoices.map(weather => {
                     return (
                       <Option key={weather} value={weather.toUpperCase()}>
@@ -111,7 +144,11 @@ const SearchDrawer = ({ form, setIsVisible, isVisible }) => {
               {getFieldDecorator('lgt-condition-picker', {
                 rules: [{ required: false, message: '' }]
               })(
-                <Select showSearch placeholder="Select Condition">
+                <Select
+                  showSearch
+                  placeholder="Select Condition"
+                  onChange={setLgt}
+                >
                   {lgtConditionChoices.map(lgt => {
                     return (
                       <Option key={lgt} value={lgt.toUpperCase()}>
