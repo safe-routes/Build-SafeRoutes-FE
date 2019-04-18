@@ -118,7 +118,12 @@ const MapComponent = compose(
         setIsVisible={setIsAdvanceSearchOpen}
         isVisible={isAdvanceSearchOpen}
       />
-      {markerInfoWindowOpen && <MarkerInfoWindow activeMarker={activeMarker} />}
+      {markerInfoWindowOpen && (
+        <MarkerInfoWindow
+          activeMarker={activeMarker}
+          setMarkerInfoWindowOpen={setMarkerInfoWindowOpen}
+        />
+      )}
       {markers.map(mark => {
         return (
           <Marker
