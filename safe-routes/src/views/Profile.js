@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+//Component Imports
 import Authenticate from '../auth/Authenticate';
 import Account from '../components/Account';
-import { deleteUser, updateUser } from '../actions';
-import { withRouter } from 'react-router-dom';
 import { message } from 'antd';
+//Action Imports
+import { deleteUser, updateUser } from '../actions';
 
 const Profile = props => {
   const [password, setPassword] = useState('');

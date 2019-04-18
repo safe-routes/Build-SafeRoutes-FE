@@ -13,7 +13,6 @@ const Nav = props => {
     setCurrent(e.key);
   };
 
-  console.log(current);
   return (
     <Menu
       onClick={e => handleClick(e)}

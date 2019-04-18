@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import { withRouter } from 'react-router-dom';
 import { addUser, login } from '../actions';
+
 const LoginForm = props => {
   const [hasAccount, setHasAccount] = useState(true);
   const [username, setUsername] = useState('');
