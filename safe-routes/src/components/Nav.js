@@ -7,6 +7,7 @@ const Nav = props => {
     localStorage.clear();
     props.history.push('/');
   };
+
   return (
     <Menu mode="horizontal">
       <Menu.Item onClick={() => props.history.push('/account-landing')}>

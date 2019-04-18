@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Authenticate from '../auth/Authenticate';
 import { Route, withRouter } from 'react-router';
-import { connect } from 'react-redux';
-import { createGroup } from '../actions';
-import { Input, Button, message } from 'antd';
+import { Button } from 'antd';
 import GroupForms from './GroupForms';
 
 const GroupForm = props => {
-  const [userGroups, setGroups] = useState([]);
   const [formType, setFormType] = useState('');
   return (
     <div className="group-form-wrapper">

@@ -21,7 +21,9 @@ class App extends Component {
         <Route
           exact
           path="/"
-          component={localStorage.getItem('token') ? AccountLanding : Login}
+          render={() =>
+            localStorage.getItem('token') ? <AccountLanding /> : <Login />
+          }
         />
         <Route path="/account-landing" component={AccountLanding} />
         <Route path="/account" component={Profile} />
