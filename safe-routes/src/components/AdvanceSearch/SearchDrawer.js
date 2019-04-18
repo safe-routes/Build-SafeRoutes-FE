@@ -27,7 +27,13 @@ const CustomDrawer = styled(Drawer)`
     margin: 0;
   }
 `;
-const SearchDrawer = ({ form, setIsVisible, isVisible, setMarkers }) => {
+const SearchDrawer = ({
+  form,
+  setIsVisible,
+  isVisible,
+  setMarkers,
+  setPredictInfo
+}) => {
   const { getFieldDecorator } = form;
   const [moreOptionsToggled, setMoreOptionsToggled] = useState(false);
   const [isWorkzone, setIsWorkzone] = useState(false);
@@ -60,18 +66,22 @@ const SearchDrawer = ({ form, setIsVisible, isVisible, setMarkers }) => {
       const value = isWorkzone ? 1 : 0;
       bodyData.isWorkzone = value;
     }
-    // county?weather=RAIN&month=August&day=TUESDAY&lgt=DAY&isWorkzone=1
-    const prepend = `${county}?${qs.stringify(bodyData)}`;
-    console.log(prepend);
-    console.log(bodyData);
-    const data = await axios({
-      method: 'post',
-      headers: { 'content-type': 'application/x-www-form-urlencoded' },
-      url: 'https://www.getsaferoutes.com/crashData.php/',
-      data: prepend,
-      timeout: 1000 * 10
-    });
-    console.log(data);
+    try {
+      const prepend = `${county}?${qs.stringify(bodyData)}`;
+      console.log(prepend);
+      const { data } = await axios({
+        method: 'post',
+        headers: { 'content-type': 'application/x-www-form-urlencoded' },
+        url: 'https://www.getsaferoutes.com/crashData.php/',
+        data: prepend,
+        timeout: 1000 * 10
+      });
+      setPredictInfo(data);
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+
     // const markersData = await axios({
     //   method: 'get',
     //   headers: { 'content-type': 'application/json' },
