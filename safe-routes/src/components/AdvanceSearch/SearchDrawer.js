@@ -16,6 +16,8 @@ import {
   weatherChoices,
   days
 } from './choicesData';
+import axios from 'axios';
+import qs from 'qs';
 const { MonthPicker, RangePicker } = DatePicker;
 
 const Option = Select.Option;
@@ -37,29 +39,41 @@ const SearchDrawer = ({ form, setIsVisible, isVisible }) => {
   const monthChange = (date, dateString) => {
     setMonth(date.format('MMMM'));
   };
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    let url = `http://crashpredictr-env.jjrxtdfaz3.us-east-2.elasticbeanstalk.com/predict/${county}?`;
-
+    // let url = `http://crashpredictr-env.jjrxtdfaz3.us-east-2.elasticbeanstalk.com/predict/${county}?`;
+    // // let url = `https://www.getsaferoutes.com/crashData.php/predict/${county}?`;
+    const bodyData = {};
     if (weather) {
-      url += `&weather=${weather}`;
+      bodyData.weather = weather;
     }
     if (month) {
-      url += `&month=${month}`;
+      bodyData.month = month;
     }
     if (day) {
-      url += `&day=${day}`;
+      bodyData.day = day;
     }
     if (lgt) {
-      url += `&lgt=${lgt}`;
+      bodyData.lgt = lgt;
     }
     if (isWorkzone === true || isWorkzone === false) {
       const value = isWorkzone ? 1 : 0;
-      url += `&isWorkzone=${value}`;
+      bodyData.isWorkzone = value;
     }
-    console.log(url);
-    // console.log(weather, month, day, lgt, isWorkzone);
+    // county?weather=RAIN&month=August&day=TUESDAY&lgt=DAY&isWorkzone=1
+    const prepend = `${county}?${qs.stringify(bodyData)}`;
+    console.log(prepend);
+    console.log(bodyData);
+    const data = await axios({
+      method: 'post',
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      url: 'https://www.getsaferoutes.com/crashData.php/',
+      data: prepend,
+      timeout: 1000 * 10
+    });
+    console.log(data);
   };
+
   return (
     <CustomDrawer
       title="Advance Search"
