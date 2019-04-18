@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { createGroup } from '../actions';
+import { createGroup, joinGroup } from '../actions';
 import { Input, Button, message } from 'antd';
 
 const AddGroupForm = props => {
@@ -8,16 +8,21 @@ const AddGroupForm = props => {
   const [passphrase, setPassphrase] = useState('');
 
   const id = localStorage.getItem('id');
-  const useCreateGroup = info => {
-    const groupInfo = {
-      name: groupName,
-      passphrase,
-      user_id: id
-    };
 
-    passphrase && groupName
-      ? props.createGroup(groupInfo)
-      : message.error('Please fill in both fields');
+  const groupInfo = {
+    name: groupName,
+    passphrase,
+    user_id: id
+  };
+
+  const useFunctions = () => {
+    if (passphrase && groupName) {
+      props.type === 'Create'
+        ? props.createGroup(groupInfo)
+        : props.joinGroup(groupInfo);
+    }
+    setPassphrase('');
+    setGroupName('');
   };
 
   return (
@@ -34,12 +39,12 @@ const AddGroupForm = props => {
         placeholder="Group Password"
         type="password"
       />
-      <Button onClick={() => useCreateGroup()}>{props.type}</Button>
+      <Button onClick={() => useFunctions()}>{props.type}</Button>
     </form>
   );
 };
 
 export default connect(
   null,
-  { createGroup }
+  { createGroup, joinGroup }
 )(AddGroupForm);
