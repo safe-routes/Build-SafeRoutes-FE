@@ -11,7 +11,7 @@ const MarkerInfoWindow = ({ activeMarker, setMarkerInfoWindowOpen }) => {
         setMarkerInfoWindowOpen(false);
       }}
       options={{
-        pixelOffset: new google.maps.Size(0, -60),
+        pixelOffset: new google.maps.Size(0, -40),
         disableAutoPan: false
       }}
     >
