@@ -1,20 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Authenticate from '../auth/Authenticate';
 import { connect } from 'react-redux';
 import { createGroup } from '../actions';
-import { Input, Button } from 'antd';
+import { Input, Button, message } from 'antd';
 
 const GroupForm = props => {
   const [groupName, setGroupName] = useState('');
   const [passphrase, setPassphrase] = useState('');
+  const [userGroups, setGroups] = useState([]);
 
+  const id = localStorage.getItem('id');
   const useCreateGroup = () => {
     const groupInfo = {
       name: groupName,
-      passphrase
+      passphrase,
+      user_id: id
     };
 
-    props.createGroup(groupInfo);
+    passphrase && groupName
+      ? props.createGroup(groupInfo)
+      : message.error('Please fill in both fields');
   };
 
   return (
@@ -40,6 +45,12 @@ const GroupForm = props => {
   );
 };
 
+const mapStateToProps = ({ createGroupReducer }) => {
+  return {
+    message: createGroupReducer.message,
+    groups: createGroupReducer.groupName
+  };
+};
 export default Authenticate(
   connect(
     null,
