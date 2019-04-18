@@ -1,59 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import Authenticate from '../auth/Authenticate';
+import { Route, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { createGroup } from '../actions';
 import { Input, Button, message } from 'antd';
+import AddGroupForm from './AddGroupForm';
 
 const GroupForm = props => {
-  const [groupName, setGroupName] = useState('');
-  const [passphrase, setPassphrase] = useState('');
   const [userGroups, setGroups] = useState([]);
 
-  const id = localStorage.getItem('id');
-  const useCreateGroup = () => {
-    const groupInfo = {
-      name: groupName,
-      passphrase,
-      user_id: id
-    };
-
-    passphrase && groupName
-      ? props.createGroup(groupInfo)
-      : message.error('Please fill in both fields');
-  };
-
+  console.log(props);
   return (
-    <>
-      <h3>Create A New Group</h3>
-      <form>
-        <Input
-          value={groupName}
-          onChange={e => setGroupName(e.target.value)}
-          placeholder="Group Name"
-        />
-        <Input
-          value={passphrase}
-          onChange={e => setPassphrase(e.target.value)}
-          placeholder="Group Password"
-          type="password"
-        />
-        <Button onClick={() => useCreateGroup()} block>
-          Create Group
-        </Button>
-      </form>
-    </>
+    <div className="group-form-wrapper">
+      <h2>What would you like to do?</h2>
+      <Button onClick={() => props.history.push('groups/create')}>
+        Create a new group
+      </Button>
+      <Button>Join an existing group</Button>
+
+      <Route path="/groups/create" component={AddGroupForm} />
+    </div>
   );
 };
 
-const mapStateToProps = ({ createGroupReducer }) => {
-  return {
-    message: createGroupReducer.message,
-    groups: createGroupReducer.groupName
-  };
-};
-export default Authenticate(
-  connect(
-    null,
-    { createGroup }
-  )(GroupForm)
-);
+export default Authenticate(withRouter(GroupForm));
