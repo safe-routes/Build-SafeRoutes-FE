@@ -72,7 +72,7 @@ const SearchDrawer = ({
       const { data } = await axios({
         method: 'post',
         headers: { 'content-type': 'application/x-www-form-urlencoded' },
-        url: 'https://www.getsaferoutes.com/crashData.php/',
+        url: 'https://www.getsaferoutes.com/crashData.php',
         data: prepend,
         timeout: 1000 * 10
       });
