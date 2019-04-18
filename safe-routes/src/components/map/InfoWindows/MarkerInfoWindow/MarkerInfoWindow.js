@@ -6,7 +6,18 @@ import { Button, Card } from 'antd';
 
 const MarkerInfoWindow = ({ activeMarker, setInfoWindowOpen }) => {
   const { lat, lng } = activeMarker.position;
-  const { twayID, twayID2, county } = activeMarker;
+  const {
+    twayID,
+    twayID2,
+    county,
+    year,
+    month,
+    day,
+    dayWeek,
+    weather,
+    fatals,
+    peds
+  } = activeMarker;
   return (
     <InfoWindow
       position={activeMarker.position}
@@ -42,6 +53,13 @@ const MarkerInfoWindow = ({ activeMarker, setInfoWindowOpen }) => {
             <br />
             {twayID2 ? `TwayID2: ${twayID2}` : ''}
           </CardGrid>
+          <CardGrid>
+            Date: {`${year}/${month}/${day}`}
+            <br />
+            Day: {dayWeek}
+          </CardGrid>
+          <CardGrid>Weather Condition: {weather}</CardGrid>
+          <CardGrid>Fatalities: {fatals}</CardGrid>
           <Button>Statistics</Button>
         </StyledCard>
       </>
