@@ -16,6 +16,7 @@ import { notification } from 'antd';
 import { centerMarkerLabel } from './helper-functions';
 import PlaceMarkerInfoWindow from './InfoWindows/PlaceMarkerInfoWindow/PlaceMarkerInfoWindow';
 import axios from 'axios';
+import WrappedSearchDrawerForm from '../AdvanceSearch/SearchDrawer';
 const MapComponent = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${
@@ -45,6 +46,7 @@ const MapComponent = compose(
   const [zoom, setZoom] = useState(4);
   //Search
   const searchBoxRef = useRef(null);
+  const [isAdvanceSearchOpen, setIsAdvanceSearchOpen] = useState(false);
   const [placeInfoWindowOpen, setPlaceInfoWindowOpen] = useState(false);
   const {
     //functions
@@ -102,9 +104,12 @@ const MapComponent = compose(
           }
         }}
       >
-        <SearchAddressInput />
+        <SearchAddressInput setIsAdvanceSearchOpen={setIsAdvanceSearchOpen} />
       </SearchBox>
-
+      <WrappedSearchDrawerForm
+        setIsVisible={setIsAdvanceSearchOpen}
+        isVisible={isAdvanceSearchOpen}
+      />
       {markers.map(mark => {
         return (
           <Marker
