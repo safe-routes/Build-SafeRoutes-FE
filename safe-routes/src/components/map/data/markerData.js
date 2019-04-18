@@ -1,5 +1,6 @@
 export default [
-  { TWAY_ID: 'SR-51',
+  {
+    TWAY_ID: 'SR-51',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'SAN MATEO',
     LATITUDE: 32.61823889,
@@ -15,8 +16,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'ANGLED',
     FUNC_SYS: 'ARTERY',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'CR-40',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'CR-40',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'ALAMEDA',
     LATITUDE: 32.52434444,
@@ -32,8 +35,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'COLLECTOR',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'SR-14',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'SR-14',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'ALAMEDA',
     LATITUDE: 32.43066389,
@@ -49,8 +54,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'ARTERY',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'SR-147',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'SR-147',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'SAN MATEO',
     LATITUDE: 32.61580556,
@@ -66,8 +73,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'HEAD ON',
     FUNC_SYS: 'ARTERY',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'US-SR 1',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'US-SR 1',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'SAN MATEO',
     LATITUDE: 32.679275,
@@ -83,8 +92,10 @@ export default [
     PEDS: 1,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'ARTERY',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'US-SR 51',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'US-SR 51',
     TWAY_ID2: 'GATEWAY DR',
     COUNTY: 'SAN MATEO',
     LATITUDE: 32.61657222,
@@ -100,8 +111,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'ARTERY',
-    TYP_INT: 'T' },
-  { TWAY_ID: 'CR-81',
+    TYP_INT: 'T'
+  },
+  {
+    TWAY_ID: 'CR-81',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'ALAMEDA',
     LATITUDE: 32.50412778,
@@ -117,8 +130,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'COLLECTOR',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'FOSTER ST',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'FOSTER ST',
     TWAY_ID2: 'CLARK AVE',
     COUNTY: 'SAN MATEO',
     LATITUDE: 32.61595,
@@ -134,8 +149,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'COLLECTOR',
-    TYP_INT: 'T' },
-  { TWAY_ID: 'CR-188',
+    TYP_INT: 'T'
+  },
+  {
+    TWAY_ID: 'CR-188',
     TWAY_ID2: 'HWY 280',
     COUNTY: 'SAN MATEO',
     LATITUDE: 32.72789444,
@@ -151,8 +168,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'ANGLED',
     FUNC_SYS: 'LOCAL',
-    TYP_INT: 'FOUR WAY' },
-  { TWAY_ID: 'SR-3',
+    TYP_INT: 'FOUR WAY'
+  },
+  {
+    TWAY_ID: 'SR-3',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'ALAMEDA',
     LATITUDE: 32.53463333,
@@ -168,8 +187,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'HEAD ON',
     FUNC_SYS: 'ARTERY',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'CR-158',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'CR-158',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'SAN MATEO',
     LATITUDE: 32.66621944,
@@ -185,8 +206,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'COLLECTOR',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'CR-36',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'CR-36',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'SAN FRANCISCO',
     LATITUDE: 33.84221944,
@@ -202,8 +225,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'ARTERY',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'CR-NORMAN RD',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'CR-NORMAN RD',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'MARIN',
     LATITUDE: 31.87865278,
@@ -219,8 +244,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'LOCAL',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'SR-17',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'SR-17',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'SAN FRANCISCO',
     LATITUDE: 33.66596944,
@@ -236,10 +263,13 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'ARTERY',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'CR-5',
-    TWAY_ID2: 'NO SECOND STREET',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
     COUNTY: 'ALAMEDA',
+    TWAY_ID: 'CR-5',
+    TWAY_ID2: 'NO SECOND STREET',
+    TYP_INT: 'NOT AN INTERSECTION',
     LATITUDE: 32.59590556,
     LONGITUD: -86.82156667,
     MONTH: 6,
@@ -252,9 +282,10 @@ export default [
     FATALS: 1,
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
-    FUNC_SYS: 'LOCAL',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'CR-STARHOPE CHURCH RD',
+    FUNC_SYS: 'LOCAL'
+  },
+  {
+    TWAY_ID: 'CR-STARHOPE CHURCH RD',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'MARIN',
     LATITUDE: 31.73813889,
@@ -270,8 +301,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'LOCAL',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'US-SR 8',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'US-SR 8',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'SANTA CLARA',
     LATITUDE: 32.26674444,
@@ -287,8 +320,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'ARTERY',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'US-SR 431',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'US-SR 431',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'SAN MATEO',
     LATITUDE: 32.54768333,
@@ -304,8 +339,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'ANGLED',
     FUNC_SYS: 'ARTERY',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'I-65',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'I-65',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'ALAMEDA',
     LATITUDE: 32.65071111,
@@ -321,8 +358,10 @@ export default [
     PEDS: 1,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'INTERSTATE',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'CR-179',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'CR-179',
     TWAY_ID2: 'US 280',
     COUNTY: 'SAN MATEO',
     LATITUDE: 32.58477778,
@@ -338,8 +377,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'ANGLED',
     FUNC_SYS: 'COLLECTOR',
-    TYP_INT: 'FOUR WAY' },
-  { TWAY_ID: 'CR-37',
+    TYP_INT: 'FOUR WAY'
+  },
+  {
+    TWAY_ID: 'CR-37',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'SANTA CLARA',
     LATITUDE: 32.12258056,
@@ -355,8 +396,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'COLLECTOR',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'CR-LEE RD 166',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'CR-LEE RD 166',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'SAN MATEO',
     LATITUDE: 32.526925,
@@ -372,8 +415,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'COLLECTOR',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'US-SR 3',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'US-SR 3',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'ALAMEDA',
     LATITUDE: 32.60963611,
@@ -389,8 +434,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'ARTERY',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'US-SR 9',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'US-SR 9',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'MARIN',
     LATITUDE: 31.69662222,
@@ -406,8 +453,10 @@ export default [
     PEDS: 1,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'ARTERY',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'SR-96',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'SR-96',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'SAN FRANCISCO',
     LATITUDE: 33.62220556,
@@ -423,8 +472,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'ARTERY',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'I-85',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'I-85',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'SAN MATEO',
     LATITUDE: 32.71009722,
@@ -440,8 +491,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'INTERSTATE',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'CR-240',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'CR-240',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'SAN MATEO',
     LATITUDE: 32.51385278,
@@ -457,8 +510,10 @@ export default [
     PEDS: 1,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'ARTERY',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'CR-HATLEY DETROIT RD',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'CR-HATLEY DETROIT RD',
     TWAY_ID2: 'SAWMILL RD',
     COUNTY: 'SAN FRANCISCO',
     LATITUDE: 34.02341111,
@@ -474,8 +529,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'HEAD ON',
     FUNC_SYS: 'COLLECTOR',
-    TYP_INT: 'T' },
-  { TWAY_ID: 'US-180',
+    TYP_INT: 'T'
+  },
+  {
+    TWAY_ID: 'US-180',
     TWAY_ID2: 'CR-2315 APACHE',
     COUNTY: 'ALAMEDA',
     LATITUDE: 34.00169444,
@@ -491,8 +548,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'HEAD ON',
     FUNC_SYS: 'ARTERY',
-    TYP_INT: 'T' },
-  { TWAY_ID: 'CR-4000',
+    TYP_INT: 'T'
+  },
+  {
+    TWAY_ID: 'CR-4000',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'ALAMEDA',
     LATITUDE: 34.11168333,
@@ -508,8 +567,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'LOCAL',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'SCHOOL BUS RD',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'SCHOOL BUS RD',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'ALAMEDA',
     LATITUDE: 34.09679444,
@@ -525,8 +586,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'COLLECTOR',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'I-40',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'I-40',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'ALAMEDA',
     LATITUDE: 35.06823056,
@@ -542,8 +605,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'INTERSTATE',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'US-191',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'US-191',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'ALAMEDA',
     LATITUDE: 36.23214444,
@@ -559,8 +624,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'COLLECTOR',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'US-191',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'US-191',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'ALAMEDA',
     LATITUDE: 36.26571111,
@@ -576,8 +643,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'HEAD ON',
     FUNC_SYS: 'COLLECTOR',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'SR-61',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'SR-61',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'ALAMEDA',
     LATITUDE: 34.31199722,
@@ -593,8 +662,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'COLLECTOR',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'SR-264',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'SR-264',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'ALAMEDA',
     LATITUDE: 35.65754167,
@@ -610,8 +681,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'ARTERY',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'US-160',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'US-160',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'ALAMEDA',
     LATITUDE: 36.94005278,
@@ -627,8 +700,10 @@ export default [
     PEDS: 1,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'ARTERY',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'CR-3140',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'CR-3140',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'ALAMEDA',
     LATITUDE: 34.20054167,
@@ -644,8 +719,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'COLLECTOR',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'US-191',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'US-191',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'ALAMEDA',
     LATITUDE: 36.22220556,
@@ -661,8 +738,10 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'COLLECTOR',
-    TYP_INT: 'NOT AN INTERSECTION' },
-  { TWAY_ID: 'SR-264',
+    TYP_INT: 'NOT AN INTERSECTION'
+  },
+  {
+    TWAY_ID: 'SR-264',
     TWAY_ID2: 'NO SECOND STREET',
     COUNTY: 'ALAMEDA',
     LATITUDE: 35.69533611,
@@ -678,5 +757,6 @@ export default [
     PEDS: 0,
     MAN_COLL: 'NOT APPLICABLE',
     FUNC_SYS: 'ARTERY',
-    TYP_INT: 'NOT AN INTERSECTION' }
-]
+    TYP_INT: 'NOT AN INTERSECTION'
+  }
+];

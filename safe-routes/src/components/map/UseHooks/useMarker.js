@@ -12,7 +12,23 @@ export default () => {
           position: {
             lat: mark['LATITUDE'],
             lng: mark['LONGITUD']
-          }
+          },
+          county: mark['COUNTY'],
+          twayID: mark['TWAY_ID'],
+          twayID2:
+            mark['TWAY_ID2'] !== 'NO SECOND STREET' ? mark['TWAY_ID2'] : null,
+          year: mark['YEAR'],
+          month: mark['MONTH'],
+          day: mark['DAY'],
+          dayWeek: mark['DAY_WEEK'],
+          lgtCond: mark['LGT_COND'],
+          weather: mark['WEATHER'],
+          wrkZone: mark['WRK_ZONE'],
+          fatals: mark['FATALS'],
+          peds: mark['PEDS'],
+          manColl: mark['ANGLED'],
+          funcSys: mark['ARTERY'],
+          typInt: mark['TYP_INT']
         };
       })
     );

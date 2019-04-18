@@ -121,7 +121,7 @@ const MapComponent = compose(
       {markerInfoWindowOpen && (
         <MarkerInfoWindow
           activeMarker={activeMarker}
-          setMarkerInfoWindowOpen={setMarkerInfoWindowOpen}
+          setInfoWindowOpen={setMarkerInfoWindowOpen}
         />
       )}
       {markers.map(mark => {
@@ -132,6 +132,7 @@ const MapComponent = compose(
             onClick={() => {
               setActiveMarker(mark);
               setMarkerInfoWindowOpen(true);
+              console.log(mark);
             }}
           />
         );
