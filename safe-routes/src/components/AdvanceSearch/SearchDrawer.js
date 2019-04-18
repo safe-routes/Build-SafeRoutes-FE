@@ -81,17 +81,16 @@ const SearchDrawer = ({
     } catch (err) {
       console.log(err);
     }
-
-    // const markersData = await axios({
-    //   method: 'get',
-    //   headers: { 'content-type': 'application/json' },
-    //   baseURL: 'https://saferoutes-4-12.herokuapp.com/api/accidents',
-    //   data: {
-    //     county: county
-    //   }
-    // });
-    // setMarkers(markersData)
-    // console.log(markersData);
+    console.log(county);
+    const { data: markersData } = await axios({
+      method: 'get',
+      baseURL: `https://saferoutes-4-12.herokuapp.com/api/accidents/${county}`
+      // data: {
+      //   county: county
+      // }
+    });
+    setMarkers(markersData);
+    console.log(markersData);
   };
 
   return (

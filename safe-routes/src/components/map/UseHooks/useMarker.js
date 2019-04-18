@@ -10,8 +10,8 @@ export default () => {
           draggable: false,
           id: uuidv4(),
           position: {
-            lat: mark['LATITUDE'],
-            lng: mark['LONGITUD']
+            lat: Number(mark['LATITUDE']),
+            lng: Number(mark['LONGITUD'])
           },
           county: mark['COUNTY'],
           twayID: mark['TWAY_ID'],
