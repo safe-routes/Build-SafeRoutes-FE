@@ -27,7 +27,7 @@ const CustomDrawer = styled(Drawer)`
     margin: 0;
   }
 `;
-const SearchDrawer = ({ form, setIsVisible, isVisible }) => {
+const SearchDrawer = ({ form, setIsVisible, isVisible, setMarkers }) => {
   const { getFieldDecorator } = form;
   const [moreOptionsToggled, setMoreOptionsToggled] = useState(false);
   const [isWorkzone, setIsWorkzone] = useState(false);
@@ -72,6 +72,16 @@ const SearchDrawer = ({ form, setIsVisible, isVisible }) => {
       timeout: 1000 * 10
     });
     console.log(data);
+    // const markersData = await axios({
+    //   method: 'get',
+    //   headers: { 'content-type': 'application/json' },
+    //   baseURL: 'https://saferoutes-4-12.herokuapp.com/api/accidents',
+    //   data: {
+    //     county: county
+    //   }
+    // });
+    // setMarkers(markersData)
+    // console.log(markersData);
   };
 
   return (

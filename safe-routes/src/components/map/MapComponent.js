@@ -117,6 +117,7 @@ const MapComponent = compose(
       <WrappedSearchDrawerForm
         setIsVisible={setIsAdvanceSearchOpen}
         isVisible={isAdvanceSearchOpen}
+        setMarkers={setMarkers}
       />
       {markerInfoWindowOpen && (
         <MarkerInfoWindow
