@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { Form, FormInput, FormBtn, color_pallete } from '../styles';
 
@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import { withRouter } from 'react-router-dom';
 import { addUser, login } from '../actions';
+
 const LoginForm = props => {
   const [hasAccount, setHasAccount] = useState(true);
   const [username, setUsername] = useState('');

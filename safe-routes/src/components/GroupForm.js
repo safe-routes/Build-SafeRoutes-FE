@@ -1,48 +1,39 @@
 import React, { useState } from 'react';
 import Authenticate from '../auth/Authenticate';
-import { connect } from 'react-redux';
-import { createGroup } from '../actions';
-import { Input, Button } from 'antd';
+import { Route, withRouter } from 'react-router';
+import { Button } from 'antd';
+import GroupForms from './GroupForms';
 
 const GroupForm = props => {
-  const [groupName, setGroupName] = useState('');
-  const [passphrase, setPassphrase] = useState('');
-
-  const useCreateGroup = () => {
-    const groupInfo = {
-      name: groupName,
-      passphrase
-    };
-
-    props.createGroup(groupInfo);
-  };
-
+  const [formType, setFormType] = useState('');
   return (
-    <>
-      <h3>Create A New Group</h3>
-      <form>
-        <Input
-          value={groupName}
-          onChange={e => setGroupName(e.target.value)}
-          placeholder="Group Name"
-        />
-        <Input
-          value={passphrase}
-          onChange={e => setPassphrase(e.target.value)}
-          placeholder="Group Password"
-          type="password"
-        />
-        <Button onClick={() => useCreateGroup()} block>
-          Create Group
-        </Button>
-      </form>
-    </>
+    <div className="group-form-wrapper">
+      <h2>What would you like to do?</h2>
+      <Button
+        onClick={() => (
+          props.history.push('/groups/create'), setFormType('Create')
+        )}
+      >
+        Create a new group
+      </Button>
+      <Button
+        onClick={() => (
+          props.history.push('/groups/join'), setFormType('Join')
+        )}
+      >
+        Join an existing group
+      </Button>
+
+      <Route
+        path="/groups/create"
+        render={() => <GroupForms type={formType} />}
+      />
+      <Route
+        path="/groups/join"
+        render={() => <GroupForms type={formType} />}
+      />
+    </div>
   );
 };
 
-export default Authenticate(
-  connect(
-    null,
-    { createGroup }
-  )(GroupForm)
-);
+export default Authenticate(withRouter(GroupForm));
