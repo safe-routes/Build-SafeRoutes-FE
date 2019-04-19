@@ -42,6 +42,7 @@ const SearchDrawer = ({
   const [month, setMonth] = useState();
   const [weather, setWeather] = useState();
   const [lgt, setLgt] = useState();
+  const [loading, setLoading] = useState(false);
   const monthChange = (date, dateString) => {
     setMonth(date.format('MMMM'));
   };
@@ -51,6 +52,7 @@ const SearchDrawer = ({
       if (err) {
         return;
       }
+      setLoading(true);
       console.log();
       if (!moreOptionsToggled) {
         try {
@@ -112,6 +114,7 @@ const SearchDrawer = ({
         baseURL: `https://saferoutes-4-12.herokuapp.com/api/accidents/${county}`
       });
       setMarkers(markersData);
+      setLoading(false);
       console.log(markersData);
     });
   };
@@ -240,7 +243,12 @@ const SearchDrawer = ({
           </>
         ) : null}
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button
+            type="primary"
+            htmlType="submit"
+            loading={loading}
+            disabled={loading}
+          >
             Search
           </Button>
         </Form.Item>
