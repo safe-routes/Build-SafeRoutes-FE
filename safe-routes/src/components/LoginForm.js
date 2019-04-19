@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import { withRouter } from 'react-router-dom';
 import { addUser, login } from '../actions';
+import { message } from 'antd';
 
 const LoginForm = props => {
   const [hasAccount, setHasAccount] = useState(true);
@@ -19,16 +20,20 @@ const LoginForm = props => {
   const useSubmit = e => {
     e.preventDefault();
     localStorage.setItem('username', username);
-    hasAccount
-      ? props
-          .login({
-            username: username.toLowerCase(),
-            password
-          })
-          .then(res => props.history.push('/account-landing'))
-      : props
-          .addUser(newUser)
-          .then(res => props.history.push('/account-landing'));
+    if (username && password) {
+      hasAccount
+        ? props
+            .login({
+              username: username.toLowerCase(),
+              password
+            })
+            .then(res => props.history.push('/account-landing'))
+        : props
+            .addUser(newUser)
+            .then(res => props.history.push('/account-landing'));
+    } else {
+      message.error('Please fill in both fields.');
+    }
   };
 
   const handleEmail = e => setEmail(e.target.value);

@@ -16,6 +16,7 @@ import { notification } from 'antd';
 import { centerMarkerLabel } from './helper-functions';
 import PlaceMarkerInfoWindow from './InfoWindows/PlaceMarkerInfoWindow/PlaceMarkerInfoWindow';
 import axios from 'axios';
+import Authenticate from '../../auth/Authenticate';
 const MapComponent = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${
@@ -153,4 +154,4 @@ const MapComponent = compose(
     </GoogleMap>
   );
 });
-export default MapComponent;
+export default Authenticate(MapComponent);
