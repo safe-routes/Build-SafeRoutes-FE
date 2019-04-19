@@ -7,14 +7,8 @@ export const CREATE_GROUP_FAIL = 'CREATE_GROUP_FAIL';
 export const createGroup = groupInfo => dispatch => {
   dispatch({ type: CREATE_GROUP_START });
 
-  console.log(groupInfo);
   return axios
     .post('https://saferoutes-4-12.herokuapp.com/api/group', groupInfo)
-    .then(
-      res => (
-        console.log(res),
-        dispatch({ type: CREATE_GROUP_SUCCESS, payload: res.data })
-      )
-    )
+    .then(res => dispatch({ type: CREATE_GROUP_SUCCESS, payload: res.data }))
     .catch(err => dispatch({ type: CREATE_GROUP_FAIL }));
 };

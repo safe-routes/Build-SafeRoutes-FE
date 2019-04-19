@@ -27,3 +27,10 @@ export {
   CREATE_GROUP_FAIL,
   createGroup
 } from './createGroup';
+
+export {
+  JOIN_GROUP_START,
+  JOIN_GROUP_SUCCESS,
+  JOIN_GROUP_FAIL,
+  joinGroup
+} from './joinGroup';

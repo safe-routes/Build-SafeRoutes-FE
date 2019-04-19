@@ -8,22 +8,6 @@ export const color_pallete = {
   accent_3: '#e9993d'
 };
 
-export const Container = styled.div`
-  height: 100vh;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  .login-container {
-    width: 100%;
-  }
-
-  .login-form-container {
-    @media (min-height: );
-  }
-`;
-
 export const Form = styled.form`
   background: ${props => props.background};
   color: white;
