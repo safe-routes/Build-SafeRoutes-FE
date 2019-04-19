@@ -17,6 +17,8 @@ import { centerMarkerLabel } from './helper-functions';
 import PlaceMarkerInfoWindow from './InfoWindows/PlaceMarkerInfoWindow/PlaceMarkerInfoWindow';
 import axios from 'axios';
 import WrappedSearchDrawerForm from '../AdvanceSearch/SearchDrawer';
+import MarkerInfoWindow from './InfoWindows/MarkerInfoWindow/MarkerInfoWindow';
+import { Progress, Card } from 'antd';
 const MapComponent = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${
@@ -57,16 +59,22 @@ const MapComponent = compose(
     placeMarkers,
     activePlaceMarker
   } = usePlacesMarker();
+
+  //Markers
+  const [markerInfoWindowOpen, setMarkerInfoWindowOpen] = useState(false);
   const {
     //functions
     setMarkers,
-    setInitialMarkers,
+    setupMarkers,
+    setActiveMarker,
     //state
-    markers
+    markers,
+    activeMarker
   } = useMarker();
 
+  const [predictInfo, setPredictInfo] = useState({});
   useEffect(() => {
-    setInitialMarkers(markerData);
+    setupMarkers(markerData);
     // setPlaceMarkers(setupPlaceMarkers(mockPlacesData));
   }, []);
 
@@ -81,6 +89,8 @@ const MapComponent = compose(
       zoom={zoom}
       onClick={e => {
         console.log(e.latLng.lat(), e.latLng.lng());
+        setMarkerInfoWindowOpen(false);
+        setPlaceInfoWindowOpen(false);
       }}
       defaultCenter={center}
     >
@@ -109,19 +119,39 @@ const MapComponent = compose(
       <WrappedSearchDrawerForm
         setIsVisible={setIsAdvanceSearchOpen}
         isVisible={isAdvanceSearchOpen}
+        setMarkers={setupMarkers}
+        setPredictInfo={setPredictInfo}
       />
+      <Card
+        bodyStyle={{
+          width: '300px',
+          position: 'absolute',
+          bottom: '0',
+          left: '0',
+          background: 'white'
+        }}
+      >
+        {predictInfo.county
+          ? `${predictInfo.county} county accident prediction rate.`
+          : `No County has been selected.`}
+        <Progress percent={Math.round(Number(predictInfo.prediction))} />
+      </Card>
+
+      {markerInfoWindowOpen && (
+        <MarkerInfoWindow
+          activeMarker={activeMarker}
+          setInfoWindowOpen={setMarkerInfoWindowOpen}
+        />
+      )}
       {markers.map(mark => {
         return (
           <Marker
             key={mark.id}
             position={mark.position}
-            onClick={async () => {
-              await axios({
-                method: 'post',
-                url: 'https://www.getsaferoutes.com/crashData.php'
-              }).then(data => {
-                console.log(data);
-              });
+            onClick={() => {
+              setActiveMarker(mark);
+              setMarkerInfoWindowOpen(true);
+              console.log(mark);
             }}
           />
         );

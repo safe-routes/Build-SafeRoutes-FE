@@ -27,7 +27,13 @@ const CustomDrawer = styled(Drawer)`
     margin: 0;
   }
 `;
-const SearchDrawer = ({ form, setIsVisible, isVisible }) => {
+const SearchDrawer = ({
+  form,
+  setIsVisible,
+  isVisible,
+  setMarkers,
+  setPredictInfo
+}) => {
   const { getFieldDecorator } = form;
   const [moreOptionsToggled, setMoreOptionsToggled] = useState(false);
   const [isWorkzone, setIsWorkzone] = useState(false);
@@ -39,39 +45,75 @@ const SearchDrawer = ({ form, setIsVisible, isVisible }) => {
   const monthChange = (date, dateString) => {
     setMonth(date.format('MMMM'));
   };
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    // let url = `http://crashpredictr-env.jjrxtdfaz3.us-east-2.elasticbeanstalk.com/predict/${county}?`;
-    // // let url = `https://www.getsaferoutes.com/crashData.php/predict/${county}?`;
-    const bodyData = {};
-    if (weather) {
-      bodyData.weather = weather;
-    }
-    if (month) {
-      bodyData.month = month;
-    }
-    if (day) {
-      bodyData.day = day;
-    }
-    if (lgt) {
-      bodyData.lgt = lgt;
-    }
-    if (isWorkzone === true || isWorkzone === false) {
-      const value = isWorkzone ? 1 : 0;
-      bodyData.isWorkzone = value;
-    }
-    // county?weather=RAIN&month=August&day=TUESDAY&lgt=DAY&isWorkzone=1
-    const prepend = `${county}?${qs.stringify(bodyData)}`;
-    console.log(prepend);
-    console.log(bodyData);
-    const data = await axios({
-      method: 'post',
-      headers: { 'content-type': 'application/x-www-form-urlencoded' },
-      url: 'https://www.getsaferoutes.com/crashData.php/',
-      data: prepend,
-      timeout: 1000 * 10
+    form.validateFields(async (err, values) => {
+      if (err) {
+        return;
+      }
+      console.log();
+      if (!moreOptionsToggled) {
+        try {
+          console.log(county.split(' ').join('%20'));
+          const { data } = await axios({
+            method: 'post',
+            headers: { 'content-type': 'application/x-www-form-urlencoded' },
+            url: 'https://www.getsaferoutes.com/crashData.php',
+            data: county.split(' ').join('%20')
+          });
+          console.log(data);
+          setPredictInfo({
+            county,
+            prediction: data.prediction
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      } else {
+        const bodyData = {};
+        if (weather) {
+          bodyData.weather = weather;
+        }
+        if (month) {
+          bodyData.month = month;
+        }
+        if (day) {
+          bodyData.day = day;
+        }
+        if (lgt) {
+          bodyData.lgt = lgt;
+        }
+        if (isWorkzone === true || isWorkzone === false) {
+          const value = isWorkzone ? 1 : 0;
+          bodyData.isWorkZone = value;
+        }
+        try {
+          const prepend = `${county}&${qs.stringify(bodyData)}`;
+          console.log(prepend);
+          const { data } = await axios({
+            method: 'post',
+            headers: { 'content-type': 'application/x-www-form-urlencoded' },
+            url: 'https://www.getsaferoutes.com/crashData.php',
+            data: prepend,
+            timeout: 1000 * 10
+          });
+          setPredictInfo({
+            county,
+            ...data
+          });
+          console.log(data);
+        } catch (err) {
+          console.log(err);
+        }
+      } // else
+      console.log(county);
+      const { data: markersData } = await axios({
+        method: 'get',
+        baseURL: `https://saferoutes-4-12.herokuapp.com/api/accidents/${county}`
+      });
+      setMarkers(markersData);
+      console.log(markersData);
     });
-    console.log(data);
   };
 
   return (
@@ -117,12 +159,19 @@ const SearchDrawer = ({ form, setIsVisible, isVisible }) => {
           <>
             <Form.Item label="Select Month">
               {getFieldDecorator('month-picker', {
-                rules: [{ type: 'object', required: false }]
+                rules: [
+                  {
+                    type: 'object',
+                    required: moreOptionsToggled ? true : false
+                  }
+                ]
               })(<MonthPicker onChange={monthChange} />)}
             </Form.Item>
             <Form.Item label="Select Day">
               {getFieldDecorator('day-picker', {
-                rules: [{ required: false, message: '' }]
+                rules: [
+                  { required: moreOptionsToggled ? true : false, message: '' }
+                ]
               })(
                 <Select showSearch placeholder="Select a Day" onChange={setDay}>
                   {days.map(day => {
@@ -137,7 +186,9 @@ const SearchDrawer = ({ form, setIsVisible, isVisible }) => {
             </Form.Item>
             <Form.Item label="Select Weather Condition">
               {getFieldDecorator('weather-picker', {
-                rules: [{ required: false, message: '' }]
+                rules: [
+                  { required: moreOptionsToggled ? true : false, message: '' }
+                ]
               })(
                 <Select
                   showSearch
@@ -156,7 +207,9 @@ const SearchDrawer = ({ form, setIsVisible, isVisible }) => {
             </Form.Item>
             <Form.Item label="Select LGT Condition">
               {getFieldDecorator('lgt-condition-picker', {
-                rules: [{ required: false, message: '' }]
+                rules: [
+                  { required: moreOptionsToggled ? true : false, message: '' }
+                ]
               })(
                 <Select
                   showSearch
