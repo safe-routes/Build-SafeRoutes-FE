@@ -60,7 +60,7 @@ const MarkerInfoWindow = ({ activeMarker, setInfoWindowOpen }) => {
           </CardGrid>
           <CardGrid>Weather Condition: {weather}</CardGrid>
           <CardGrid>Fatalities: {fatals}</CardGrid>
-          <Button>Statistics</Button>
+          {/* <Button>Statistics</Button> */}
         </StyledCard>
       </>
     </InfoWindow>
