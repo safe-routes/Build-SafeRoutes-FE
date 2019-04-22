@@ -130,6 +130,9 @@ const SearchDrawer = ({
         });
         // console.log(markersData);
       } catch (err) {
+        notification.error({
+          message: 'Something went wrong with setting markers, try again later.'
+        });
         console.log(err);
       }
       setLoading(false);
