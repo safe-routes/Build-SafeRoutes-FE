@@ -7,7 +7,8 @@ import {
   Select,
   Checkbox,
   Button,
-  DatePicker
+  DatePicker,
+  notification
 } from 'antd';
 import styled from 'styled-components';
 import {
@@ -53,22 +54,26 @@ const SearchDrawer = ({
         return;
       }
       setLoading(true);
-      console.log();
+
       if (!moreOptionsToggled) {
         try {
-          console.log(county.split(' ').join('%20'));
           const { data } = await axios({
-            method: 'post',
-            headers: { 'content-type': 'application/x-www-form-urlencoded' },
-            url: 'https://www.getsaferoutes.com/crashData.php',
-            data: county.split(' ').join('%20')
+            method: 'get',
+            url: `https://crashpredictr-env.jjrxtdfaz3.us-east-2.elasticbeanstalk.com/predict/${county.toUpperCase()}`
           });
-          console.log(data);
+          // console.log(data);
+          notification.success({
+            message: 'Prediction calculated successfully!'
+          });
           setPredictInfo({
             county,
             prediction: data.prediction
           });
         } catch (err) {
+          notification.error({
+            message:
+              'Something went wrong with the prediction calculation, try again later.'
+          });
           console.log(err);
         }
       } else {
@@ -90,12 +95,14 @@ const SearchDrawer = ({
           bodyData.isWorkZone = value;
         }
         try {
+          // console.log(qs.stringify(bodyData));
           const prepend = `${county}&${qs.stringify(bodyData)}`;
-          console.log(prepend);
           const { data } = await axios({
-            method: 'post',
+            method: 'get',
             headers: { 'content-type': 'application/x-www-form-urlencoded' },
-            url: 'https://www.getsaferoutes.com/crashData.php',
+            url:
+              'https://crashpredictr-env.jjrxtdfaz3.us-east-2.elasticbeanstalk.com/predict/' +
+              prepend,
             data: prepend,
             timeout: 1000 * 10
           });
@@ -103,19 +110,29 @@ const SearchDrawer = ({
             county,
             ...data
           });
-          console.log(data);
+          // console.log(data);
         } catch (err) {
+          notification.error({
+            message:
+              'Something went wrong with the prediction calculation, try again later.'
+          });
           console.log(err);
         }
       } // else
-      console.log(county);
-      const { data: markersData } = await axios({
-        method: 'get',
-        baseURL: `https://saferoutes-4-12.herokuapp.com/api/accidents/${county}`
-      });
-      setMarkers(markersData);
+      try {
+        const { data: markersData } = await axios({
+          method: 'get',
+          baseURL: `https://saferoutes-4-12.herokuapp.com/api/accidents/${county}`
+        });
+        setMarkers(markersData);
+        notification.success({
+          message: `Markers generated for ${county}.`
+        });
+        // console.log(markersData);
+      } catch (err) {
+        console.log(err);
+      }
       setLoading(false);
-      console.log(markersData);
     });
   };
 
