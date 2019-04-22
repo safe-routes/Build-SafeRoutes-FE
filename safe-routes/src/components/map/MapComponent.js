@@ -19,6 +19,7 @@ import axios from 'axios';
 import WrappedSearchDrawerForm from '../AdvanceSearch/SearchDrawer';
 import MarkerInfoWindow from './InfoWindows/MarkerInfoWindow/MarkerInfoWindow';
 import { Progress, Card } from 'antd';
+// google maps react docs: https://tomchentw.github.io/react-google-maps/
 const MapComponent = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${
@@ -74,7 +75,7 @@ const MapComponent = compose(
 
   const [predictInfo, setPredictInfo] = useState({});
   useEffect(() => {
-    setupMarkers(markerData);
+    // setupMarkers(markerData);
     // setPlaceMarkers(setupPlaceMarkers(mockPlacesData));
   }, []);
 
