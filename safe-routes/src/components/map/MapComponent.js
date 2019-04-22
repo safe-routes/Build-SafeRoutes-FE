@@ -75,7 +75,7 @@ const MapComponent = compose(
 
   const [predictInfo, setPredictInfo] = useState({});
   useEffect(() => {
-    setupMarkers(markerData);
+    // setupMarkers(markerData);
     // setPlaceMarkers(setupPlaceMarkers(mockPlacesData));
   }, []);
 
