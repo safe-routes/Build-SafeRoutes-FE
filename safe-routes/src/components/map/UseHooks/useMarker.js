@@ -4,7 +4,7 @@ export default () => {
   const [markers, setMarkers] = useState([]);
   const [activeMarker, setActiveMarker] = useState({});
   const setupMarkers = markers => {
-    return setMarkers(
+    setMarkers(
       markers.map(mark => {
         return {
           draggable: false,
